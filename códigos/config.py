@@ -1,0 +1,4 @@
+X = 1280
+Y = 720
+FPS = 500
+CAPTION = "ECOS"
