@@ -2,7 +2,7 @@ import pygame
 from config import X, Y
 
 def tela_inicial(tela):
-    imagem_inicial = pygame.image.load('assets/Tela_inicial1.png')
+    imagem_inicial = pygame.image.load('assets/Tela_inicial.png')
     imagem_inicial = pygame.transform.scale(imagem_inicial, (X, Y))
     esperando = True
 

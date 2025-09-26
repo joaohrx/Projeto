@@ -4,7 +4,8 @@ from personagens import Protagonista, Ceifador
 from telas import tela_inicial
 
 pygame.init()
-tela = pygame.display.set_mode((X, Y))
+fullscreen = True
+tela = pygame.display.set_mode((X, Y), pygame.FULLSCREEN)
 pygame.display.set_caption(CAPTION)
 clock = pygame.time.Clock()
 
@@ -27,6 +28,13 @@ while rodando:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                fullscreen = not fullscreen
+                if fullscreen:
+                    tela = pygame.display.set_mode((X, Y), pygame.FULLSCREEN)
+                else:
+                    tela = pygame.display.set_mode((X, Y))
 
     tela.blit(fundo, (0, 0))
 
