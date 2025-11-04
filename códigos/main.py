@@ -2,6 +2,7 @@ import pygame
 from config import X, Y, FPS, CAPTION
 from personagens import Protagonista, Ceifador
 from telas import tela_inicial
+from colisao import colisoes
 
 pygame.init()
 fullscreen = True
@@ -12,18 +13,17 @@ clock = pygame.time.Clock()
 pygame.mixer.music.load('assets/FUNDO_MUSICAL.mp3')
 pygame.mixer.music.play(-1)
 
-# Fundo
+# Fundos
 fundo_menu = pygame.image.load('assets/telainicial.png').convert()
 fundo_menu = pygame.transform.scale(fundo_menu, (X, Y))
 
-fundo_jogo = pygame.image.load('assets/telainicial.png').convert()
+fundo_jogo = pygame.image.load('assets/Mapaa.png').convert()
 fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
 
 protagonista = Protagonista()
 monstro = Ceifador()
 monstros_mortos = 0
 max_monstros = 3
-
 
 tela_inicial(tela)
 
@@ -48,7 +48,6 @@ def transicao_fade(tela, img_saida, img_entrada, duracao=1500):
 
 transicao_fade(tela, fundo_menu, fundo_jogo, duracao=1500)
 
-
 rodando = True
 while rodando:
     clock.tick(FPS)
@@ -66,7 +65,7 @@ while rodando:
     tela.blit(fundo_jogo, (0, 0))
 
     if monstros_mortos < max_monstros and monstro.vivo:
-        monstro.atualizar()
+        monstro.atualizar(None)
         monstro.desenhar(tela)
         if monstro.posi[0] > 1200:
             monstros_mortos += 1
@@ -77,5 +76,8 @@ while rodando:
     teclas = pygame.key.get_pressed()
     protagonista.atualizar(teclas)
     protagonista.desenhar(tela)
+
+    for c in colisoes:
+        pygame.draw.rect(tela, (255, 0, 0), c, 2)
 
     pygame.display.update()
