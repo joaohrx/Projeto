@@ -95,8 +95,8 @@ while rodando:
         protagonista.atualizar(teclas)
         protagonista.desenhar(tela)
 
-        for c in colisoes:
-            pygame.draw.rect(tela, (255, 0, 0), c, 1)
+        # for c in colisoes:
+             # pygame.draw.rect(tela, (255, 0, 0), c, 1)
 
         # Interação estante 1
         if protagonista.rect.colliderect(area_livro):
