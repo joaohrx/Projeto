@@ -3,13 +3,14 @@ from abc import ABC, abstractmethod
 from colisao import colisoes
 
 class Personagem(ABC):
-    def __init__(self, imagem_path, tamanho, posi, velocidade):
+    def __init__(self, imagem_path, tamanho, posi, velocidade, vida):
         self.imagem = pygame.image.load(imagem_path).convert_alpha()
         self.imagem = pygame.transform.scale(self.imagem, tamanho)
         self.posi = list(posi)
         self.velocidade = velocidade
         self.vivo = True
         self.rect = pygame.Rect(self.posi[0], self.posi[1], tamanho[0], tamanho[1])
+        self.vida = vida
 
     @abstractmethod
     def atualizar(self, teclas):
@@ -30,7 +31,7 @@ class Personagem(ABC):
 
 class Protagonista(Personagem):
     def __init__(self):
-        super().__init__('assets/Protagonista.png', (50, 50), (500, 300), 0.5)
+        super().__init__('assets/Protagonista.png', (50, 50), (500, 300), 0.5, 100)
 
     def atualizar(self, teclas):
         dx = dy = 0
@@ -42,7 +43,10 @@ class Protagonista(Personagem):
 
 class Ceifador(Personagem):
     def __init__(self):
-        super().__init__('assets/monstro.png', (200, 200), (-300, 300), 0.7)
+        super().__init__('assets/monstro.png', (200, 200), (-300, 300), 0.7, 40)
 
     def atualizar(self, teclas):
         self.mover(self.velocidade, 0)
+
+class Lanterna():
+    pass
