@@ -48,5 +48,6 @@ class Ceifador(Personagem):
     def atualizar(self, teclas):
         self.mover(self.velocidade, 0)
 
-class Lanterna():
-    pass
+class Lanterna(self):
+    def __init__(self):
+        pass
