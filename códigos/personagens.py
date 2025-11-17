@@ -42,19 +42,20 @@ class Protagonista(Personagem):
         self.mover(dx, dy)
 
 class Ceifador(Personagem):
-    def __init__(self):
+    def __init__(self, dano = 10):
+        self.dano = dano
         super().__init__('assets/monstro.png', (125, 125), (170, 335), 0.7, 40)
 
     def atualizar(self, teclas):
         self.mover(self.velocidade, 0)
 
 class Lanterna:
-    def __init__(self, energia, usando, ultimo_uso, tempo_recarga, imagem):
-        self.energia = 100
-        self.usando = False
-        self.ultimo_uso = 0
-        self.tempo_recarga = 0
-        self.imagem = pygame.image.load("assets\lanterna_spritesheet.png").convert_alpha()
+    def __init__(self, energia = 100, usando = False, ultimo_uso = 0, tempo_recarga = 0, imagem = "assets/lanterna_spritesheet.png"):
+        self.energia = energia
+        self.usando = usando
+        self.ultimo_uso = ultimo_uso
+        self.tempo_recarga = tempo_recarga
+        self.imagem = pygame.image.load(imagem).convert_alpha()
 
     def usar(self):
         if self.energia > 0:
