@@ -24,7 +24,6 @@ def fase1(tela):
     
     area_livro = pygame.Rect(302, 302, 90, 90)
 
-    
     area_diario = pygame.Rect(1180, 440, 65, 65)
 
     mostrando_estante = False
