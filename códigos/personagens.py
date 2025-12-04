@@ -1,6 +1,6 @@
 import pygame
 from abc import ABC, abstractmethod
-from colisao import colisoes
+import colisao
 
 class Personagem(ABC):
     def __init__(self, imagem_path, tamanho, posi, velocidade, vida):
@@ -24,7 +24,7 @@ class Personagem(ABC):
         nova_posi = [self.posi[0] + dx, self.posi[1] + dy]
         novo_rect = pygame.Rect(nova_posi[0], nova_posi[1], self.rect.width, self.rect.height)
 
-        if not any(novo_rect.colliderect(c) for c in colisoes):
+        if not any(novo_rect.colliderect(c) for c in colisao.colisoes):
             self.posi = nova_posi
             self.rect.topleft = self.posi
 

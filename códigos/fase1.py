@@ -1,6 +1,8 @@
 import pygame
 from config import X, Y, FPS
 from personagens import Protagonista, Ceifador
+from colisao import colisoes
+
 
 def fase1(tela):
     clock = pygame.time.Clock()
@@ -14,7 +16,8 @@ def fase1(tela):
     imagem_estante = pygame.image.load('assets/estante01.png').convert_alpha()
     imagem_estante = pygame.transform.scale(imagem_estante, (600, 400))
 
-    fonte = pygame.font.Font(None, 22)
+    fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
+
 
     protagonista = Protagonista()
     monstro = Ceifador()

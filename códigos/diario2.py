@@ -3,7 +3,8 @@ from config import X, Y, FPS
 
 def diario2(tela):
     clock = pygame.time.Clock()
-    fonte = pygame.font.Font(None, 32)
+    fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 32)
+
 
     texto_digitado = ""
     codigo_correto = "temquevercomoscarala2"
