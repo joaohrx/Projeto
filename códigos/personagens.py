@@ -35,10 +35,10 @@ class Protagonista(Personagem):
 
     def atualizar(self, teclas):
         dx = dy = 0
-        if teclas[pygame.K_w]: dy -= self.velocidade
-        if teclas[pygame.K_s]: dy += self.velocidade
-        if teclas[pygame.K_a]: dx -= self.velocidade
-        if teclas[pygame.K_d]: dx += self.velocidade
+        if teclas[pygame.K_w] or teclas[pygame.K_UP]: dy -= self.velocidade
+        if teclas[pygame.K_s] or teclas[pygame.K_DOWN]: dy += self.velocidade
+        if teclas[pygame.K_a] or teclas[pygame.K_LEFT]: dx -= self.velocidade
+        if teclas[pygame.K_d] or teclas[pygame.K_RIGHT]: dx += self.velocidade
         self.mover(dx, dy)
 
 class Ceifador(Personagem):
