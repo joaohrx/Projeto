@@ -48,10 +48,10 @@ def diario(tela):
 
                        
                         return "fase1"
-
+                    #JOÃO AQUI PARA IR DA FASE 1 DIRETO PRA 3
                     #Caso o codigo esteja correto
                     if texto_digitado.lower() == codigo_correto:
-                        return "fase2"
+                        return "fase3"
 
                     # Caso o codigo esteja errado
                     return "fase1"

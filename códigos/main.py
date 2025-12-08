@@ -24,7 +24,10 @@ while rodando:
 
     elif estado == "diario":
         estado = diario(tela)
-
+    
+    elif estado == "fase3":
+        estado = fase3(tela)
+    
     elif estado == "fase2":
         estado = fase2(tela)
     
