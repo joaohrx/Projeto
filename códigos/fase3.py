@@ -20,7 +20,7 @@ def fase3(tela):
 
 
  
-    protagonista = Protagonista()
+    protagonista = Protagonista(posi_inicial=(500, 400))
 
     rodando = True
 

@@ -30,8 +30,8 @@ class Personagem(ABC):
 
 
 class Protagonista(Personagem):
-    def __init__(self):
-        super().__init__('assets/Protagonista.png', (50, 50), (500, 300), 0.5, 100)
+    def __init__(self, posi_inicial=(500, 300)):
+        super().__init__('assets/Protagonista.png', (50, 50), posi_inicial, 0.5, 100)
 
     def atualizar(self, teclas):
         dx = dy = 0
