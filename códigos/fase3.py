@@ -18,8 +18,6 @@ def fase3(tela):
 
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 40)
 
-
- 
     protagonista = Protagonista(posi_inicial=(500, 400))
 
     rodando = True
@@ -43,8 +41,5 @@ def fase3(tela):
         tela.blit(fundo_fase2, (0, 0))
 
         protagonista.desenhar(tela)
-
-        for c in colisao.colisoes:
-            pygame.draw.rect(tela, (255, 0, 0), c, 2)
 
         pygame.display.update()

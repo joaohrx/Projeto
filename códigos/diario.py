@@ -9,7 +9,6 @@ def diario(tela):
     codigo_correto = "temquevercomoscarala"
     codigo_hugo = "821715"
 
-  
     Hugo = pygame.image.load("assets/aihugo.jpg").convert()
     Hugo = pygame.transform.scale(Hugo, (X, Y))
 
@@ -35,7 +34,7 @@ def diario(tela):
 
                 if event.key == pygame.K_RETURN:
 
-                    #Caso o codigo seja o easter egg
+                    # Caso o código seja o easter egg
                     if texto_digitado.strip() == codigo_hugo:
 
                         if Hugo_som:
@@ -48,10 +47,8 @@ def diario(tela):
 
                        
                         return "fase1"
-                    #JOÃO AQUI PARA IR DA FASE 1 DIRETO PRA 3
-                    #Caso o codigo esteja correto
                     if texto_digitado.lower() == codigo_correto:
-                        return "fase3"
+                        return "fase2"
 
                     # Caso o codigo esteja errado
                     return "fase1"

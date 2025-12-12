@@ -1,5 +1,6 @@
 import pygame
 
+# Colisão da fase 1 e 2
 # x, y, largura, altura
 colisoes = [
     pygame.Rect(0, 10, 1280, 205), # Borda superior
