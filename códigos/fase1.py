@@ -16,6 +16,10 @@ def fase1(tela):
     imagem_estante = pygame.image.load('assets/MODRFT1.png').convert_alpha()
     imagem_estante = pygame.transform.scale(imagem_estante, (600, 400))
 
+    # 🔹 Livro1 (antiga imagem 1)
+    Livro1 = pygame.image.load('assets/Livro1..png').convert_alpha()
+    Livro1 = pygame.transform.scale(Livro1, (500, 300))
+
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 
     protagonista = Protagonista()
@@ -26,8 +30,15 @@ def fase1(tela):
     area_livro = pygame.Rect(302, 302, 90, 90)
     area_diario = pygame.Rect(1180, 440, 65, 65)
 
+    # 🔹 Área de colisão do Livro1
+    area_Livro1 = pygame.Rect(100, 400, 80, 120)
+
+
+
+
     mostrando_estante = False
     mostrando_diario_texto = False
+    mostrando_Livro1 = False
 
     rodando = True
 
@@ -39,25 +50,40 @@ def fase1(tela):
                 return "sair"
 
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    return "sair"
 
-                # Interação com a estante
+                # ESC fecha Livro1 ou sai
+                if event.key == pygame.K_ESCAPE:
+                    if mostrando_Livro1:
+                        mostrando_Livro1 = False
+                    else:
+                        return "sair"
+
+                # 🔹 Interação com ESTANTE
                 if (
                     event.key == pygame.K_l
                     and protagonista.rect.colliderect(area_livro)
                     and not mostrando_diario_texto
+                    and not mostrando_Livro1
                 ):
                     mostrando_estante = not mostrando_estante
 
-                # Interação com o diário
+                # 🔹 Interação com DIÁRIO
                 elif (
                     event.key == pygame.K_l
                     and protagonista.rect.colliderect(area_diario)
                     and not mostrando_estante
-                    and not mostrando_diario_texto
+                    and not mostrando_Livro1
                 ):
                     mostrando_diario_texto = True
+
+                # 🔹 Interação com Livro1
+                elif (
+                    event.key == pygame.K_l
+                    and protagonista.rect.colliderect(area_Livro1)
+                    and not mostrando_estante
+                    and not mostrando_diario_texto
+                ):
+                    mostrando_Livro1 = not mostrando_Livro1
 
                 # Saída do diário
                 if event.key == pygame.K_RETURN and mostrando_diario_texto:
@@ -66,7 +92,7 @@ def fase1(tela):
         tela.blit(fundo_jogo, (0, 0))
 
         # ================= JOGO NORMAL =================
-        if not mostrando_estante and not mostrando_diario_texto:
+        if not mostrando_estante and not mostrando_diario_texto and not mostrando_Livro1:
 
             if monstros_mortos < max_monstros and monstro.vivo:
                 monstro.atualizar(None)
@@ -95,6 +121,12 @@ def fase1(tela):
                 rect = d.get_rect(center=(protagonista.posi[0], protagonista.posi[1] - 20))
                 tela.blit(d, rect)
 
+            # Texto Livro1
+            if protagonista.rect.colliderect(area_Livro1):
+                i = fonte.render("Investigar (L)", True, (255, 255, 0))
+                rect = i.get_rect(center=(protagonista.posi[0], protagonista.posi[1] - 20))
+                tela.blit(i, rect)
+
         # ================= ESTANTE =================
         elif mostrando_estante:
             overlay = pygame.Surface((X, Y))
@@ -106,6 +138,17 @@ def fase1(tela):
             y_img = Y // 2 - imagem_estante.get_height() // 2
             tela.blit(imagem_estante, (x_img, y_img))
 
+        # ================= LIVRO1 =================
+        elif mostrando_Livro1:
+            overlay = pygame.Surface((X, Y))
+            overlay.set_alpha(180)
+            overlay.fill((0, 0, 0))
+            tela.blit(overlay, (0, 0))
+
+            x_img = X // 2 - Livro1.get_width() // 2
+            y_img = Y // 2 - Livro1.get_height() // 2
+            tela.blit(Livro1, (x_img, y_img))
+
         # ================= DIÁRIO =================
         elif mostrando_diario_texto:
             overlay = pygame.Surface((X, Y))
@@ -114,7 +157,7 @@ def fase1(tela):
             tela.blit(overlay, (0, 0))
 
             linhas = [
-                "24/06/08"
+                "24/06/08",
                 "Terceiro dia na cidade. Meu pai conseguiu um emprego de arquivista",
                 "aqui na biblioteca local, nada interessante.",
                 "Depois da escola eu venho para cá e decidi fazer leituras",
