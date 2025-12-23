@@ -3,20 +3,32 @@ from config import X, Y, FPS
 
 def diario(tela):
     clock = pygame.time.Clock()
-    fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 32)
 
+    #Fonte
+    fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 32)
+    fonte_erro = pygame.font.Font("assets/DepartureMono-Regular.otf", 26)
+
+    #Entrada
     texto_digitado = ""
     codigo_correto = "temquevercomoscarala"
     codigo_hugo = "821715"
 
+    #erro
+    mensagem_erro = ""
+    tempo_erro = 0
+
+    #Imagem
     Hugo = pygame.image.load("assets/aihugo.jpg").convert()
     Hugo = pygame.transform.scale(Hugo, (X, Y))
 
-    
+    # Som
+    Hugo_som = None
     try:
+        if not pygame.mixer.get_init():
+            pygame.mixer.init()
         Hugo_som = pygame.mixer.Sound("assets/AIHUGO.mp3")
     except:
-        Hugo_som = None  
+        Hugo_som = None
 
     rodando = True
 
@@ -34,38 +46,49 @@ def diario(tela):
 
                 if event.key == pygame.K_RETURN:
 
-                    # Caso o código seja o easter egg
+                    # Easter egg
                     if texto_digitado.strip() == codigo_hugo:
-
                         if Hugo_som:
                             Hugo_som.play()
 
-                       
                         tela.blit(Hugo, (0, 0))
                         pygame.display.update()
                         pygame.time.delay(1000)
-
-                       
                         return "fase1"
-                    if texto_digitado.lower() == codigo_correto:
+
+                    # Código correto
+                    if texto_digitado.lower().strip() == codigo_correto:
                         return "fase2"
 
-                    # Caso o codigo esteja errado
-                    return "fase1"
+                    # Código errado
+                    texto_digitado = ""
+                    mensagem_erro = "Não foram esses..."
+                    tempo_erro = pygame.time.get_ticks()
 
                 elif event.key == pygame.K_BACKSPACE:
                     texto_digitado = texto_digitado[:-1]
 
                 else:
-                    texto_digitado += event.unicode
+                    if event.unicode.isalnum():
+                        texto_digitado += event.unicode
 
       
         tela.fill((0, 0, 0))
 
-        t1 = fonte.render("....", True, (255, 255, 255))
-        tela.blit(t1, (X//2 - 150, Y//2 - 60))
+        #Texto fixo
+        dica = fonte.render("....", True, (255, 255, 255))
+        tela.blit(dica, (X // 2 - 150, Y // 2 - 60))
 
-        t2 = fonte.render(texto_digitado, True, (255, 255, 0))
-        tela.blit(t2, (X//2 - 150, Y//2 - 20))
+        #Texto digitado
+        entrada = fonte.render(texto_digitado, True, (255, 255, 0))
+        tela.blit(entrada, (X // 2 - 150, Y // 2 - 20))
+
+        #Mensagem de erro 
+        if mensagem_erro:
+            if pygame.time.get_ticks() - tempo_erro < 2000:
+                erro = fonte_erro.render(mensagem_erro, True, (200, 50, 50))
+                tela.blit(erro, (X // 2 - 150, Y // 2 + 30))
+            else:
+                mensagem_erro = ""
 
         pygame.display.update()
