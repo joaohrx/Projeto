@@ -9,7 +9,7 @@ from diario2 import diario2
 
 pygame.init()
 
-tela = pygame.display.set_mode((X, Y), pygame.FULLSCREEN)
+tela = pygame.display.set_mode((X, Y))
 pygame.display.set_caption(CAPTION)
 
 tela_inicial(tela)
