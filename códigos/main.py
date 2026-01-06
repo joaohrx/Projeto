@@ -7,6 +7,7 @@ from fase3 import fase3
 from diario import diario
 from diario2 import diario2
 
+
 pygame.init()
 
 tela = pygame.display.set_mode((X, Y))
