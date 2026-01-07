@@ -142,29 +142,22 @@ def fase2(tela):
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [
-                "28/06/08",
-                "Ok, retiro o que eu disse sobre não ter nada de interessante.",
-                "As pessoas são bem receptivas e eu já tenho até alguns amigos",
-                "Eles fizeram uma careta estranha quando eu contei sobre o emprego do meu pai",
-                "e não quiseram vir comigo pra cá depois da aula..",
-                "As vezes eles só não gostam de ler né?",
-                "Ser arquivista não é o emprego mais empolgante do mundo.",
-                "Pai chegou estressado hoje, não sei porque,",
-                "o movimento foi fraco e ele tá ganhando bem",
-                "mãe me pediu para subir mais cedo pro quarto,",
-                "estou escrevendo isso para passar o tempo.",
+                "24/07/08",
+                "as coiSas pioraram",
+                "estou passando mais tEmpo do que é necessário na escola",
+                "me envolvI em projetos e pesquisas chatas",
+                "não quero voltar pra caSa."
+                "ainda venho pra cá porque, por algum motivo",
+                "que não sei explicar, percebi que"
+                "ele fica mais calmo aqui do que em casa."
+                
             ])
 
         elif mostrando_diario_texto:
             mostrar_texto(tela,fonte,
                 [
-                    "24/06/08",
-                    "Terceiro dia na cidade. Meu pai conseguiu um emprego de arquivista",
-                    "aqui na biblioteca local, nada interessante.",
-                    "Depois da escola eu venho para cá e decidi fazer leituras",
-                    "aleatórias baseadas na ordem alfabética para passar o tempo",
-                    "vou escrever alguns na proxíma página..",
-                    "Espero me manter entretida até as férias",
+                    "08/08/08",
+                    "Isso não é ele. Isso não é você."
                 ],
                 rodape="Pressione ENTER"
             )
@@ -172,14 +165,37 @@ def fase2(tela):
         elif mostrando_livro2:
             mostrar_texto(tela,fonte,
                 [
-                    "02/07/08",
+                    "30/07/08",
+                    "toda noite é a mesma coisa",
+                    "suspeito que mamãe esteja tOmando remédios para dormir,"
+                    "também suspeito que ela não sabe dIsso.. ",
+                    "as brigas ficaram mais pesadas, ele joga",
+                    "coisas pela casa e fala que deveriamos ser gratas",
+                    "por esse emprego, e que ele se mata de trabalhar",
+                    "por nós. ele não percebe? não percebe que por algum moTivo,",
+                    "por mais que ele trabalhe dia e noite, a gente não tem recebido",
+                    "nada.. Mamãe acha que ele está traindo ela, por isso as brigas",
+                    "não sei bem o que pensar, nunca vi nenhuma mulher entrar",
+                    "no tempo que passO aqui.."
                 ]
             )
 
         elif mostrando_livro3:
             mostrar_texto(tela,fonte,
                 [
-                    "06/07/08",
+                    "06/08/08",
+                    "mamãe foi embora.",
+                    "ela não deixou cartaS nem me acordou para ir com ela.",
+                    "nos primeiros dias eu pensei que ela podia ter saido",
+                    "esfriar a cabeça, mas ela não vOltou..",
+                    "quase não vejo meu pai, na verdade eu evito ele propositalmente",
+                    "dentro de Casa, quando ele saí eu espero um tempo e venho para cá",
+                    "sei que ele almoça aqui, e cOmo eu disse",
+                    "fica totalmente diferente, mais calmo e controlado,",
+                    "ainda com os olhos meio vazios, mas nada compaRado",
+                    "com aquilo que moRa comigo. Queria que mamãe voltasse logO",
+                    "sei que ela me ama, deve estar preparando algum lugar",
+                    "para a gente ficar."
                 ]
             )
 

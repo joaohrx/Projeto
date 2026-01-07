@@ -6,10 +6,14 @@ from config import X, Y, FPS
 def diario2(tela):
     clock = pygame.time.Clock()
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 32)
+    fonte_erro = pygame.font.Font("assets/DepartureMono-Regular.otf", 26)
 
     texto_digitado = ""
-    codigo_correto = "temquevercomoscarala2"
-    codigo_hugo = "821715"
+    codigo_correto = "socorro"
+    codigo_hugo = "hugo"
+    
+    mensagem_erro = ""
+    tempo_erro = 0
 
     Hugo = pygame.image.load("assets/aihugo.jpg").convert()
     Hugo = pygame.transform.scale(Hugo, (X, Y))
@@ -22,7 +26,7 @@ def diario2(tela):
     # transicao
     em_transicao = False
     inicio_transicao = 0
-    DURACAO_TRANSICAO = 20000  # 20 segundos em milimaxsegundos
+    DURACAO_TRANSICAO = 10000  # 20 segundos em milimaxsegundos
 
     rodando = True
 
@@ -62,13 +66,16 @@ def diario2(tela):
                         continue
 
                     # Código errado
-                    return "fase2"
+                    texto_digitado = ""
+                    mensagem_erro = "Não foram esses..."
+                    tempo_erro = pygame.time.get_ticks()
 
                 elif event.key == pygame.K_BACKSPACE:
                     texto_digitado = texto_digitado[:-1]
 
                 else:
-                    texto_digitado += event.unicode
+                    if event.unicode.isalnum():
+                        texto_digitado += event.unicode
 
           # transicao
         if em_transicao:
@@ -86,7 +93,7 @@ def diario2(tela):
                 cor = random.choice([(255, 255, 255), (255, 0, 0)])
                 pygame.draw.rect(tela, cor, (x, y, w, h))
 
-            texto = fonte.render("Fala dai clara", True, (255, 0, 0))
+            texto = fonte.render("ELA NÃO FOI EMBORA",True, (255, 0, 0))
             tela.blit(texto, texto.get_rect(center=(X // 2, Y // 2)))
 
             pygame.display.update()
@@ -104,5 +111,12 @@ def diario2(tela):
 
         t2 = fonte.render(texto_digitado, True, (255, 255, 0))
         tela.blit(t2, (X // 2 - 150, Y // 2 - 20))
+        
+        if mensagem_erro:
+            if pygame.time.get_ticks() - tempo_erro < 2000:
+                erro = fonte_erro.render(mensagem_erro, True, (200, 50, 50))
+                tela.blit(erro, (X // 2 - 150, Y // 2 + 30))
+            else:
+                mensagem_erro = ""
 
         pygame.display.update()

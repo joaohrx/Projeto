@@ -141,9 +141,10 @@ def fase1(tela):
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [
-                "28/06/08",
+                "06/06/08",
                 "Ok, retiro o que eu disse sobre não ter nada de interessante.",
                 "As pessoas são bem receptivas e eu já tenho até alguns amigos",
+                "são meio agitados demais, mas acho que gosto disso;"
                 "Eles fizeram uma careta estranha quando eu contei sobre o emprego do meu pai",
                 "e não quiseram vir comigo pra cá depois da aula..",
                 "As vezes eles só não gostam de ler né?",
@@ -157,9 +158,11 @@ def fase1(tela):
         elif mostrando_diario_texto:
             mostrar_texto(tela,fonte,
                 [
-                    "24/06/08",
+                    "02/06/08",
                     "Terceiro dia na cidade. Meu pai conseguiu um emprego de arquivista",
                     "aqui na biblioteca local, nada interessante.",
+                    "Achei um anexo entre alguns livros, o espaço é bom,",
+                    "meu pai disse que não foi informado para abrir esse espaço ao público.",
                     "Depois da escola eu venho para cá e decidi fazer leituras",
                     "aleatórias baseadas na ordem alfabética para passar o tempo",
                     "vou escrever alguns na proxíma página..",
@@ -171,14 +174,29 @@ def fase1(tela):
         elif mostrando_livro2:
             mostrar_texto(tela,fonte,
                 [
-                    "02/07/08",
+                    "06/07/08",
+                    "Faz um tempo que não escrevo... ",
+                    "Tá um clima péssimo lá em casa",
+                    "meu pai chega tarde, por algum motivo",
+                    "mesmo depois que eu saio, ele ainda fica horas",
+                    "a fio por aqui. Mamãe reclama bastante",
+                    "e diz que se sente sozinha, Tenho que esconder",
+                    "os livros que eu levo pra casa, ela não suporta nada",
+                    "nem nenhum assunto que venha daqui. Deve ser estresse",
+                    "pela mudança.",
                 ]
             )
 
         elif mostrando_livro3:
             mostrar_texto(tela,fonte,
                 [
-                    "06/07/08",
+                    "12/07/08",
+                    "Eu gosto daqui, acho aconchegante de verdade",
+                    "mas é inegavel como o ar vai ficando mais pesado",
+                    "depois de um tempo, meu pai nos primeiros dias",
+                    "disse que se sentia assim também... Duvido que",
+                    "ele admitiria isso hoje. Ontem eu ouvi um tapa, não quero pensar"
+                    "muito sobre isso.. Ele nunca foi assim."
                 ]
             )
 

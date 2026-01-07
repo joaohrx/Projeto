@@ -21,6 +21,9 @@ def diario(tela):
     Hugo = pygame.image.load("assets/aihugo.jpg").convert()
     Hugo = pygame.transform.scale(Hugo, (X, Y))
 
+    Visao = pygame.image.load("assets/visao.jpg").convert()
+    Visao = pygame.transform.scale(Visao, (X, Y))
+
     # Som
     Hugo_som = None
     try:
@@ -58,6 +61,9 @@ def diario(tela):
 
                     # Código correto
                     if texto_digitado.lower().strip() == codigo_correto:
+                        tela.blit(Visao, (0, 0))
+                        pygame.display.update()
+                        pygame.time.delay(100)
                         return "fase2"
 
                     # Código errado
