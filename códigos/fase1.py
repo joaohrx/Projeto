@@ -12,14 +12,17 @@ def fase1(tela):
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
     fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
 
-    imagem_estante = pygame.image.load('assets/MODRFT1.png').convert_alpha()
-    imagem_estante = pygame.transform.scale(imagem_estante, (600, 400))
+    largura = int(X * 0.9)
+    altura = int(Y * 0.9)
 
-    imagem_estante_central = pygame.image.load('assets/MODRFT1.png').convert_alpha()
-    imagem_estante_central = pygame.transform.scale(imagem_estante_central, (600, 400))
+    imagem_estante = pygame.image.load('assets/MODRFT1.png').convert_alpha()
+    imagem_estante = pygame.transform.scale(imagem_estante, (largura, altura))
+
+    imagem_estante_central = pygame.image.load('assets/CRDO.png').convert_alpha()
+    imagem_estante_central = pygame.transform.scale(imagem_estante_central, (largura, altura))
 
     imagem_estante3 = pygame.image.load('assets/MODRFT1.png').convert_alpha()
-    imagem_estante3 = pygame.transform.scale(imagem_estante3, (600, 400))
+    imagem_estante3 = pygame.transform.scale(imagem_estante3, (largura, altura))
 
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 
