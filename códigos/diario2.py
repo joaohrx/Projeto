@@ -26,7 +26,7 @@ def diario2(tela):
     # transicao
     em_transicao = False
     inicio_transicao = 0
-    DURACAO_TRANSICAO = 10000  # 20 segundos em milimaxsegundos
+    DURACAO_TRANSICAO = 9000  # 20 segundos em milimaxsegundos
 
     rodando = True
 
@@ -93,7 +93,8 @@ def diario2(tela):
                 cor = random.choice([(255, 255, 255), (255, 0, 0)])
                 pygame.draw.rect(tela, cor, (x, y, w, h))
 
-            texto = fonte.render("ELA NÃO FOI EMBORA",True, (255, 0, 0))
+            fonteglitch = pygame.font.Font("assets/Faith_Collapsing.ttf", 60) 
+            texto = fonteglitch.render("ELA NÃO FOI EMBORA",True, (255, 0, 0))
             tela.blit(texto, texto.get_rect(center=(X // 2, Y // 2)))
 
             pygame.display.update()

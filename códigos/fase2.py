@@ -27,10 +27,6 @@ def fase2(tela):
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 
     protagonista = Protagonista()
-    monstro = Ceifador()
-
-    monstros_mortos = 0
-    max_monstros = 3
 
     # Áreas
     area_estante = pygame.Rect(302, 302, 90, 90)
@@ -138,17 +134,6 @@ def fase2(tela):
             mostrando_livro3
         ]):
 
-            if monstros_mortos < max_monstros and monstro.vivo:
-                monstro.atualizar(None)
-                monstro.desenhar(tela)
-
-                if monstro.posi[0] > 1200:
-                    monstros_mortos += 1
-                    monstro.vivo = False
-
-            elif monstros_mortos < max_monstros:
-                monstro = Ceifador()
-
             teclas = pygame.key.get_pressed()
             protagonista.atualizar(teclas)
             protagonista.desenhar(tela)
@@ -163,12 +148,18 @@ def fase2(tela):
 
         elif mostrando_estante:
             mostrar_imagem(tela, imagem_estante)
+            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
+            tela.blit(t, (500, 690))
 
         elif mostrando_estante_central:
             mostrar_imagem(tela, imagem_estante_central)
+            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
+            tela.blit(t, (500, 690))
 
         elif mostrando_estante3:
             mostrar_imagem(tela, imagem_estante3)
+            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
+            tela.blit(t, (500, 690))
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [

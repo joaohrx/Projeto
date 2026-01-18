@@ -114,15 +114,6 @@ class Protagonista(Personagem):
             self.imagem = self.animacoes[self.direcao][0]
 
 
-
-class Ceifador(Personagem):
-    def __init__(self, dano = 10):
-        self.dano = dano
-        super().__init__('assets/monstro.png', (125, 125), (170, 335), 0.7, 40)
-
-    def atualizar(self, teclas):
-        self.mover(self.velocidade, 0)
-
 class Lanterna:
     def __init__(self, energia = 100, usando = False, ultimo_uso = 0, tempo_recarga = 0, imagem = "assets/lanterna_spritesheet.png"):
         self.energia = energia

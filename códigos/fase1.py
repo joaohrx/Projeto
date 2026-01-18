@@ -27,10 +27,6 @@ def fase1(tela):
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 
     protagonista = Protagonista()
-    monstro = Ceifador()
-
-    monstros_mortos = 0
-    max_monstros = 3
 
     # Áreas
     area_estante= pygame.Rect(302, 302, 90, 90)
@@ -110,17 +106,6 @@ def fase1(tela):
             mostrando_livro3
         ]):
 
-            if monstros_mortos < max_monstros and monstro.vivo:
-                monstro.atualizar(None)
-                monstro.desenhar(tela)
-
-                if monstro.posi[0] > 1200:
-                    monstros_mortos += 1
-                    monstro.vivo = False
-
-            elif monstros_mortos < max_monstros:
-                monstro = Ceifador()
-
             teclas = pygame.key.get_pressed()
             protagonista.atualizar(teclas)
             protagonista.desenhar(tela)
@@ -135,22 +120,28 @@ def fase1(tela):
 
         elif mostrando_estante:
             mostrar_imagem(tela, imagem_estante)
+            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
+            tela.blit(t, (500, 690))
 
         elif mostrando_estante_central:
             mostrar_imagem(tela, imagem_estante_central)
+            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
+            tela.blit(t, (500, 690))
 
         elif mostrando_estante3:
             mostrar_imagem(tela, imagem_estante3)
+            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
+            tela.blit(t, (500, 690))
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [
                 "06/06/08",
                 "Ok, retiro o que eu disse sobre não ter nada de interessante.",
-                "As pessoas são bem receptivas e eu já tenho até alguns amigos",
+                "As pessoas são bem receptivas, e eu já tenho até alguns amigos",
                 "são meio agitados demais, mas acho que gosto disso;"
                 "Eles fizeram uma careta estranha quando eu contei sobre o emprego do meu pai",
                 "e não quiseram vir comigo pra cá depois da aula..",
-                "As vezes eles só não gostam de ler né?",
+                "As vezes eles só não gostam de ler, né?",
                 "Ser arquivista não é o emprego mais empolgante do mundo.",
                 "Pai chegou estressado hoje, não sei porque,",
                 "o movimento foi fraco e ele tá ganhando bem",
@@ -165,11 +156,11 @@ def fase1(tela):
                     "Terceiro dia na cidade. Meu pai conseguiu um emprego de arquivista",
                     "aqui na biblioteca local, nada interessante.",
                     "Achei um anexo entre alguns livros, o espaço é bom,",
-                    "meu pai disse que não foi informado para abrir esse espaço ao público.",
-                    "Depois da escola eu venho para cá e decidi fazer leituras",
+                    "meu pai disse que foi informado para não abrir esse espaço ao público.",
+                    "Depois da escola eu venho para cá e decidi fazer algumas leituras",
                     "aleatórias baseadas na ordem alfabética para passar o tempo",
                     "vou escrever alguns na proxíma página..",
-                    "Espero me manter entretida até as férias",
+                    "Espero me manter entretida até as férias.",
                 ],
                 rodape="Pressione ENTER"
             )
