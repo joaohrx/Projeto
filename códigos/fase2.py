@@ -1,6 +1,6 @@
 import pygame
 from config import X, Y, FPS
-from personagens import Protagonista, Ceifador
+from personagens import Protagonista
 
 
 def fase2(tela):

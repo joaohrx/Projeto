@@ -10,9 +10,17 @@ def _callback(indata, frames, time, status):
     _volume = np.linalg.norm(indata)
 
 def iniciar_microfone():
-    stream = sd.InputStream(callback=_callback)
-    stream.start()
-    return stream
+    try:
+        stream = sd.InputStream(
+            channels=1,
+            callback=_callback,
+            samplerate=44100
+        )
+        stream.start()
+        return stream
+    except Exception as e:
+        print("Erro ao iniciar microfone:", e)
+        return None
 
 def pegar_volume():
     return min(_volume * 5, 1)

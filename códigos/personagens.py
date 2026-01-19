@@ -32,6 +32,13 @@ class Personagem(ABC):
     def desenhar(self, tela):
         if self.vivo and self.imagem:
             tela.blit(self.imagem, self.posi)
+            
+            if self.lanterna and self.lanterna.ligada and self.lanterna.energia > 0:
+                lanterna_pos = (
+                    self.posi[0] + 20 if self.direcao == "direita" else self.posi[0] - 10,
+                    self.posi[1] + 15
+                )  
+                self.lanterna.desenhar(tela, lanterna_pos)
 
     def mover(self, dx, dy):
         nova_posi = [self.posi[0] + dx, self.posi[1] + dy]
@@ -74,6 +81,13 @@ class Protagonista(Personagem):
         )
 
         self.imagem = self.animacoes["direita"][0]
+        
+        self.lanterna = Lanterna(
+        "assets/lanterna_spritesheet.png",
+        frame_w=32,
+        frame_h=32,
+        frames=8
+        )
 
     def carregar_animacao(self, pasta, quantidade):
       frames = []
@@ -85,7 +99,7 @@ class Protagonista(Personagem):
       return frames
 
 
-    def atualizar(self, teclas):
+    def atualizar(self, teclas, lanterna_ligada = False):
         dx = dy = 0
         movimento = False
 
@@ -112,16 +126,47 @@ class Protagonista(Personagem):
         else:
             self.frame_atual = 0
             self.imagem = self.animacoes[self.direcao][0]
+            
+        if self.lanterna.ligada and self.lanterna.energia > 0:
+            self.lanterna.atualizar(lanterna_ligada)
 
 
 class Lanterna:
-    def __init__(self, energia = 100, usando = False, ultimo_uso = 0, tempo_recarga = 0, imagem = "assets/lanterna_spritesheet.png"):
-        self.energia = energia
-        self.usando = usando
-        self.ultimo_uso = ultimo_uso
-        self.tempo_recarga = tempo_recarga
-        self.imagem = pygame.image.load(imagem).convert_alpha()
+    def __init__(self, caminho_spritesheet, frame_w, frame_h, frames):
+        self.frames = []
+        self.frame_atual = 0
+        self.tempo_animacao = 0
+        self.delay = 80
 
-    def usar(self):
-        if self.energia > 0:
-            self.usando = True
+        self.energia = 100
+        self.ligada = False
+
+        sheet = pygame.image.load(caminho_spritesheet).convert_alpha()
+
+        for i in range(frames):
+            frame = sheet.subsurface(
+                pygame.Rect(i * frame_w, 0, frame_w, frame_h)
+            )
+            frame = pygame.transform.scale(frame, (40, 40))
+            self.frames.append(frame)
+
+    def atualizar(self, ligada):
+        agora = pygame.time.get_ticks()
+        self.ligada = ligada
+
+        if self.ligada and self.energia > 0:
+            self.energia -= 0.2
+
+            if agora - self.tempo_animacao > self.delay:
+                self.tempo_animacao = agora
+                self.frame_atual = (self.frame_atual + 1) % len(self.frames)
+
+        else:
+            self.frame_atual = 0
+
+    def desenhar(self, tela, pos):
+        if self.energia <= 0:
+            return
+
+        tela.blit(self.frames[self.frame_atual], pos)
+        
