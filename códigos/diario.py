@@ -21,7 +21,7 @@ def diario(tela):
     Hugo = pygame.image.load("assets/aihugo.jpg").convert()
     Hugo = pygame.transform.scale(Hugo, (X, Y))
 
-    Visao = pygame.image.load("assets/eye.png").convert()
+    Visao = pygame.image.load("assets/GF.gif").convert()
     Visao = pygame.transform.scale(Visao, (X, Y))
 
     # Som

@@ -3,7 +3,7 @@ from config import X, Y, CAPTION
 from telas import tela_inicial
 from fase1 import fase1
 from fase2 import fase2
-from fase3 import fase3
+ ##from fase3 import fase3
 from diario import diario
 from diario2 import diario2
 
