@@ -81,14 +81,14 @@ def fase2(tela):
                         if mostrando_livro2 and not alucinou_livro2:
                             em_alucinacao = True
                             inicio_alucinacao = agora
-                            TEXTO_INTRUSIVO = "WIR WISSEN, WO IHR SEID. ES GIBT KEIN VERSTECK", "ES IST NUR EINE FRAGE DER ZEIT."
+                            TEXTO_INTRUSIVO = "ES IST NUR EINE FRAGE DER ZEIT."
                             som_alucinacao.play()
                             alucinou_livro2 = True
 
                         elif mostrando_livro3 and not alucinou_livro3:
                             em_alucinacao = True
                             inicio_alucinacao = agora
-                            TEXTO_INTRUSIVO = "Deutschland wird gereinigt.", "EIN VOLK, EIN REICH, EIN FÜHRER."
+                            TEXTO_INTRUSIVO = "EIN VOLK, EIN REICH, EIN FÜHRER."
                             som_alucinacao.play()
                             alucinou_livro3 = True
 
