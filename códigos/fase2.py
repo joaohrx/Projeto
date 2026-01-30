@@ -15,14 +15,11 @@ def fase2(tela):
     som_alucinacao = pygame.mixer.Sound("assets/alucinacao.wav")
     som_alucinacao.set_volume(0.6)
 
-    imagem_estante = pygame.image.load('assets/MODRFT1.png').convert_alpha()
-    imagem_estante = pygame.transform.scale(imagem_estante, (600, 400))
+    imagem_estante = pygame.image.load('assets/AA2.png').convert_alpha()
+    imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
 
-    imagem_estante_central = pygame.image.load('assets/MODRFT1.png').convert_alpha()
-    imagem_estante_central = pygame.transform.scale(imagem_estante_central, (600, 400))
-
-    imagem_estante3 = pygame.image.load('assets/MODRFT1.png').convert_alpha()
-    imagem_estante3 = pygame.transform.scale(imagem_estante3, (600, 400))
+    imagem_estante3 = pygame.image.load('assets/ESTANTECC.png').convert_alpha()
+    imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
 
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 
@@ -45,6 +42,8 @@ def fase2(tela):
     mostrando_livro1 = False
     mostrando_livro2 = False
     mostrando_livro3 = False
+    mostrando_aviso_estante_central = False 
+   
 
     #alucinado
     alucinou_livro2 = False
@@ -73,7 +72,8 @@ def fase2(tela):
                         mostrando_diario_texto,
                         mostrando_livro1,
                         mostrando_livro2,
-                        mostrando_livro3
+                        mostrando_livro3,
+                        mostrando_aviso_estante_central
                     ]):
                         agora = pygame.time.get_ticks()
 
@@ -81,7 +81,7 @@ def fase2(tela):
                         if mostrando_livro2 and not alucinou_livro2:
                             em_alucinacao = True
                             inicio_alucinacao = agora
-                            TEXTO_INTRUSIVO = "ES IST NUR EINE FRAGE DER ZEIT."
+                            TEXTO_INTRUSIVO = "14/7."
                             som_alucinacao.play()
                             alucinou_livro2 = True
 
@@ -99,6 +99,7 @@ def fase2(tela):
                         mostrando_livro1 = False
                         mostrando_livro2 = False
                         mostrando_livro3 = False
+                        mostrando_aviso_estante_central = False
                     else:
                         return "sair"
 
@@ -106,7 +107,7 @@ def fase2(tela):
                     if protagonista.rect.colliderect(area_estante):
                         mostrando_estante = True
                     elif protagonista.rect.colliderect(area_estante_central):
-                        mostrando_estante_central = True
+                        mostrando_aviso_estante_central = True
                     elif protagonista.rect.colliderect(area_estante3):
                         mostrando_estante3 = True
                     elif protagonista.rect.colliderect(area_diario):
@@ -131,7 +132,8 @@ def fase2(tela):
             mostrando_diario_texto,
             mostrando_livro1,
             mostrando_livro2,
-            mostrando_livro3
+            mostrando_livro3,
+            mostrando_aviso_estante_central
         ]):
 
             teclas = pygame.key.get_pressed()
@@ -151,11 +153,12 @@ def fase2(tela):
             t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
             tela.blit(t, (500, 690))
 
-        elif mostrando_estante_central:
-            mostrar_imagem(tela, imagem_estante_central)
-            t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
-            tela.blit(t, (500, 690))
-
+        elif mostrando_aviso_estante_central:
+            mostrar_texto(
+                tela,
+                fonte,
+                ["Não é seguro ficar muito perto."]
+            )
         elif mostrando_estante3:
             mostrar_imagem(tela, imagem_estante3)
             t = fonte.render("Pressione ESC para fechar", True, (255, 255, 0))
@@ -163,57 +166,50 @@ def fase2(tela):
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [
-                "24/07/08",
-                "as coiSas pioraram",
-                "estou passando mais tEmpo do que é necessário na escola",
-                "me envolvI em projetos e pesquisas chatas",
-                "não quero voltar pra caSa.",
-                "ainda venho pra cá porque, por algum motivo",
-                "que não sei explicar, percebi que",
-                "ele fica mais calmo aqui do que em casa."
+            "A casa encolheu. Somos seis aqui e ficou",
+            "cheio demais, alguem precisa ir embora.",
+            "Aprendemos a medir o dia pelos passos do lado de fora,",
+            "não pelo relógio. Comemos devagar para não fazer barulho.",
+            "Até em nossos pensamentos precisamos agir devagar para não chamar atenção.",
+            "Às vezes esqueço como era andar sem ter que pedir permissão ao chão.",
+            "Não estamos escondidos dos guardas. Estamos escondidos de algo maior.",
+            "Eles dizem que querem unificar ou algo assim, mas não entendo o que realmente querem dizer",
+            "com isso."
             ])
 
         elif mostrando_diario_texto:
             mostrar_texto(
                 tela, fonte,
                 [
-                    "08/08/08",
-                    "Isso não é ele. Isso não é você."
+                    "Sombras sussurram."
                 ],
                 rodape="Pressione ENTER"
             )
 
         elif mostrando_livro2:
             mostrar_texto(tela, fonte, [
-                "30/07/08",
-                "toda noite é a mesma coisa",
-                "suspeito que mamãe esteja tOmando remédios para dormir,",
-                "também suspeito que ela não sabe dIsso.. ",
-                "as brigas ficaram mais pesadas, ele joga",
-                "coisas pela casa e fala que deveriamos ser gratas",
-                "por esse emprego, e que ele se mata de trabalhar",
-                "por nós. ele não percebe? não percebe que por algum moTivo,",
-                "por mais que ele trabalhe dia e noite, a gente não tem recebido",
-                "nada.. Mamãe acha que ele está traindo ela, por isso as brigas",
-                "não sei bem o que pensar, nunca vi nenhuma mulher entrar",
-                "no tempo que passO aqui.."
+                "Eu já tinha idade suficiente para andar sozinho pelo bairro onde vivíamos quando eles",
+                "chegaram em Budapeste. Minha mãe me disse que nós seríamos **********.",
+                "Eu não tinha certeza sobre o que aquilo queria dizer, apenas sabia que estávamos partindo. ",
+                "Parecia uma aventura, mas minha mãe disse que era sério.",
+                "Fomos parte de um grupo de ****** que eles estavam trocando por caminhões.",
+                "Partimos em trens. À noite, dormíamos do lado de fora, em barracas.",
+                "Lá era lamacento e meus sapatos ficaram em frangalhos.",
+                "Aquilo me impedia de correr, a única diversão que tínhamos.",
             ])
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-                "06/08/08",
-                "mamãe foi embora.",
-                "ela não deixou cartaS nem me acordou para ir com ela.",
-                "nos primeiros dias eu pensei que ela podia ter saido",
-                "esfriar a cabeça, mas ela não vOltou..",
-                "quase não vejo meu pai, na verdade eu evito ele propositalmente",
-                "dentro de Casa, quando ele saí eu espero um tempo e venho para cá",
-                "sei que ele almoça aqui, e cOmo eu disse",
-                "fica totalmente diferente, mais calmo e controlado,",
-                "ainda com os olhos meio vazios, mas nada compaRado",
-                "com aquilo que moRa comigo. Queria que mamãe voltasse logO",
-                "sei que ela me ama, deve estar preparando algum lugar",
-                "para a gente ficar."
+                'Alguns meses após eu chegar em *********, acho que quase todo mundo ficou doente.',
+                'Minha mãe havia tido malária, mas nunca teve tifo. Eu acabei contraíndo tifo, ',
+                'e não lembro muito bem o que aconteceu naquele período, só sei que minha mãe me vestia toda manhã,',
+                'e me arrastava para o trabalho, pois assim eu não corria o risco de apanhar ou de ser levada. ',
+                'Então, minha mãe me arrastava de um lado para o outro, mas era óbvio que eu não estava bem.',
+                'Uma vez, houve uma seleção para as ******* ** *** e nós estávamos em pé, do lado de fora, quando um guarda das [] mandou que eu fosse para um lado',
+                'e que minha mãe fosse para outro porque eu parecia estar muito doente e era claro que ',
+                'eu estava apenas desperdiçando a comida, a dieta de duzentas calorias que recebíamos por dia.' ,
+                'Então, minha mãe implorou a ele dizendo que eu era filha dela e pediu para ir junto comigo: ela não pode vir comigo?,',
+                'eu não posso ir junto com ela?, e ele disse que não, até que enfim falou: se você está tão preocupada com sua filha, vá com ela',
             ])
 
         #alucinado
@@ -239,7 +235,18 @@ def mostrar_imagem(tela, imagem):
          Y // 2 - imagem.get_height() // 2)
     )
 
+def escalar_sem_distorcer(imagem, largura_max, altura_max):
+    largura_original, altura_original = imagem.get_size()
+    proporcao = min(
+        largura_max / largura_original,
+        altura_max / altura_original
+    )
 
+    nova_largura = int(largura_original * proporcao)
+    nova_altura = int(altura_original * proporcao)
+
+    return pygame.transform.scale(imagem, (nova_largura, nova_altura))
+    
 def mostrar_texto(tela, fonte, linhas, rodape="Pressione ESC para fechar"):
     overlay = pygame.Surface((X, Y))
     overlay.set_alpha(200)

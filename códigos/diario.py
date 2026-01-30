@@ -10,8 +10,8 @@ def diario(tela):
 
     #Entrada
     texto_digitado = ""
-    codigo_correto = "temquevercomoscarala"
-    codigo_hugo = "821715"
+    codigo_correto = "88"
+    codigo_hugo = "hugo"
 
     #erro
     mensagem_erro = ""
