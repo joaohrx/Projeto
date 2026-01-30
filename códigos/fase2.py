@@ -192,7 +192,7 @@ def fase2(tela):
                 "chegaram em Budapeste. Minha mãe me disse que nós seríamos **********.",
                 "Eu não tinha certeza sobre o que aquilo queria dizer, apenas sabia que estávamos partindo. ",
                 "Parecia uma aventura, mas minha mãe disse que era sério.",
-                "Fomos parte de um grupo de ****** que eles estavam trocando por caminhões.",
+                "Fomos parte de um grupo de ******* que eles estavam trocando por caminhões.",
                 "Partimos em trens. À noite, dormíamos do lado de fora, em barracas.",
                 "Lá era lamacento e meus sapatos ficaram em frangalhos.",
                 "Aquilo me impedia de correr, a única diversão que tínhamos.",

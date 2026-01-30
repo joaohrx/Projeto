@@ -3,14 +3,14 @@ from config import X, Y, CAPTION
 from telas import tela_inicial
 from fase1 import fase1
 from fase2 import fase2
-##from fase3 import fase3
+from fase3 import fase3
 from diario import diario
 from diario2 import diario2
 from intro import intro
 
 pygame.init()
 
-tela = pygame.display.set_mode((X, Y))
+tela = pygame.display.set_mode((X, Y), pygame.FULLSCREEN)
 pygame.display.set_caption(CAPTION)
 
 estado = tela_inicial(tela)

@@ -9,9 +9,9 @@ def diario2(tela):
     fonte_erro = pygame.font.Font("assets/DepartureMono-Regular.otf", 26)
 
     texto_digitado = ""
-    codigo_correto = "SS"
+    codigo_correto = "ss"
     codigo_hugo = "hugo"
-    
+
     mensagem_erro = ""
     tempo_erro = 0
 

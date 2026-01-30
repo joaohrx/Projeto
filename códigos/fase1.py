@@ -141,10 +141,10 @@ def fase1(tela):
                 tela, fonte,
                 [
                     "Bem vindo a ***************",
-                    "É importante manter a biblioteca orgnizada"
-                    "e os livros catalogados. De vez em quando um ou outro"
-                    "livros ficam sem identificação. "
-                    "a estante central está infestada de cupins. "
+                    "É importante manter a biblioteca organizada",
+                    "e os livros catalogados. De vez em quando um ou outro",
+                    "livros ficam sem identificação. ",
+                    "a estante central está infestada de cupins. ",
                     "tenha um bom dia "
                 ],
                 rodape="Pressione ENTER"
