@@ -37,7 +37,7 @@ def fase3(tela):
 
         teclas = pygame.key.get_pressed()
         
-        protagonista.atualizar(teclas, lanterna_ligada)
+        protagonista.atualizar(teclas)
 
        
         tela.blit(fundo_fase2, (0, 0))
