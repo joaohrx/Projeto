@@ -9,7 +9,7 @@ def diario2(tela):
     fonte_erro = pygame.font.Font("assets/DepartureMono-Regular.otf", 26)
 
     texto_digitado = ""
-    codigo_correto = "socorro"
+    codigo_correto = "SS"
     codigo_hugo = "hugo"
     
     mensagem_erro = ""
@@ -67,7 +67,7 @@ def diario2(tela):
 
                     # Código errado
                     texto_digitado = ""
-                    mensagem_erro = "Não foram esses..."
+                    mensagem_erro = "..."
                     tempo_erro = pygame.time.get_ticks()
 
                 elif event.key == pygame.K_BACKSPACE:
@@ -94,7 +94,7 @@ def diario2(tela):
                 pygame.draw.rect(tela, cor, (x, y, w, h))
 
             fonteglitch = pygame.font.Font("assets/Faith_Collapsing.ttf", 60) 
-            texto = fonteglitch.render("ELA NÃO FOI EMBORA",True, (255, 0, 0))
+            texto = fonteglitch.render("Rocha pense em algo que combine com sua fase",True, (255, 0, 0))
             tela.blit(texto, texto.get_rect(center=(X // 2, Y // 2)))
 
             pygame.display.update()
