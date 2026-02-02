@@ -155,9 +155,9 @@ def fase1(tela):
         elif mostrando_livro2:
             mostrar_texto(tela, fonte, [
                 'Guerra e Paz – Liev Tolstói',
-                'adouT csmEpo e mB eiPdodr - Marcel Proust'
-                'daatirS - Hermann Hesse'
-                'dreoncTi eâ ópcCr - Henry Miller'
+                'adouT csmEpo e mB eiPdodr - Marcel Proust',
+                'daatirS - Hermann Hesse',
+                'dreoncTi eâ ópcCr - Henry Miller',
                     ])
 
         elif mostrando_livro3:

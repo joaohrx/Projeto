@@ -169,10 +169,8 @@ def fase2(tela):
             "A casa encolheu. Somos seis aqui e ficou",
             "cheio demais, alguem precisa ir embora.",
             "Aprendemos a medir o dia pelos passos do lado de fora,",
-            "não pelo relógio. Comemos devagar para não fazer barulho.",
-            "Até em nossos pensamentos precisamos agir devagar para não chamar atenção.",
-            "Às vezes esqueço como era andar sem ter que pedir permissão ao chão.",
-            "Não estamos escondidos dos guardas. Estamos escondidos de algo maior.",
+            "não pelo relógio. Comemos devagar para não fazer barulho,",
+            "Não estamos escondidos dos guardas da []. Estamos escondidos de algo maior.",
             "Eles dizem que querem unificar ou algo assim, mas não entendo o que realmente querem dizer",
             "com isso."
             ])

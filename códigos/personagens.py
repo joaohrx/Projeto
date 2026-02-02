@@ -76,7 +76,7 @@ class Protagonista(Personagem):
             None,
             (50, 50),
             posi_inicial,
-            0.5,
+            0.6,
             100
         )
 
