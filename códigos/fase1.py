@@ -1,7 +1,6 @@
 import pygame
 from config import X, Y, FPS
 from personagens import Protagonista, teclas_normais
-teclas = teclas_normais
 
 
 def fase1(tela):
@@ -104,6 +103,7 @@ def fase1(tela):
             mostrando_aviso_estante_central
         ]):
 
+            teclas = teclas_normais()
             protagonista.atualizar(teclas)
             protagonista.desenhar(tela)
 
