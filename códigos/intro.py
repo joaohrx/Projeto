@@ -19,7 +19,7 @@ def intro(tela):
         "",
         "Mesmo depois do afundar na treva, vivemos na medida do possível, até que chegou o Mandato de ██████████.",
         "",
-        "Foi dela a ideia de fugir e se esconder na casa remota do Arquivista. Um velho amigo. Estou seguro? Estamos seguros?"
+        "Foi dela a ideia se esconder na casa remota do Arquivista. Um velho amigo. Estou seguro? Estamos seguros?"
     ]
 
     linha_atual = 0

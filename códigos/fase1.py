@@ -1,6 +1,7 @@
 import pygame
 from config import X, Y, FPS
-from personagens import Protagonista
+from personagens import Protagonista, teclas_normais
+teclas = teclas_normais
 
 
 def fase1(tela):
@@ -130,22 +131,24 @@ def fase1(tela):
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [
-                "06/06/08",
-                "Ok, retiro o que eu disse sobre não ter nada de interessante.",
-                "As pessoas são bem receptivas, e eu já tenho até alguns amigos",
-                "são meio agitados demais, mas acho que gosto disso;"
+                "Quando chegamos aqui, meu pai estava feliz pelo escape, e ao mesmo tempo, irritado",
+                "Disse que mamãe foi irresponsável, que ela não deveria ter passado aquela carta",
+                "e nem ajudado o Sr. ██████████ a falsificar aquele visto.",
+                "Ele disse que tudo isso nos colocou em perigo, e melhor teria sido se só ele tivesse sofrido",
+                "e não nós duas. Nunca vou esquecer a brutalidade da ███████ e dos homens invadindo nossa casa.",
+                "Lembre das iniciais."
             ])
 
         elif mostrando_diario_texto:
             mostrar_texto(
                 tela, fonte,
                 [
-                    "Bem vindo a ***************",
+                    "Bem vindos a ███████████████",
                     "É importante manter a biblioteca organizada",
                     "e os livros catalogados. De vez em quando um ou outro",
-                    "livros ficam sem identificação. ",
-                    "a estante central está infestada de cupins. ",
-                    "tenha um bom dia "
+                    "livros ficam sem identificação.",
+                    "A estante central está infestada de cupins.",
+                    "Tenha um bom dia."
                 ],
                 rodape="Pressione ENTER"
             )
@@ -155,16 +158,22 @@ def fase1(tela):
             'A16',
             'A16',
             'A24',
-            'A32'
+            'A32',
+            'C48',
+            'C56',
+            'C16'
             
                     ])
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-            'C48',
-            'C56',
-            'C16',
-            'C8'
+            'Guerra e Paz – Liev Tolstói',
+            'Em Busca do Tempo Perdido - Marcel Proust',
+            'Sidarta - Hermann Hesse',
+            'Trópico de Câncer - Henry Miller',
+            'Anna Kariênina - Liev Tolstói',
+            'Psicopatologia da Vida Cotidiana - Sigmund Freud',
+            'O Processo - Franz Kafka',
             
             ])
 

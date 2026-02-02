@@ -2,6 +2,20 @@ import pygame
 from abc import ABC, abstractmethod
 import colisao
 import os
+
+def teclas_normais():
+    teclas_cru = pygame.key.get_pressed()
+    return {
+        "cima": teclas_cru[pygame.K_UP],
+        "baixo": teclas_cru[pygame.K_DOWN],
+        "esq": teclas_cru[pygame.K_LEFT],
+        "dir": teclas_cru[pygame.K_RIGHT],
+        "w": teclas_cru[pygame.K_w],
+        "s": teclas_cru[pygame.K_s],
+        "a": teclas_cru[pygame.K_a],
+        "d": teclas_cru[pygame.K_d],
+    }
+
 class Personagem(ABC):
     def __init__(self, imagem_path, tamanho, posi, velocidade, vida):
         self.posi = list(posi)
@@ -89,18 +103,18 @@ class Protagonista(Personagem):
         dx = dy = 0
         movimento = False
 
-        if teclas[pygame.K_w] or teclas[pygame.K_UP]:
+        if teclas["w"] or teclas["cima"]:
             dy -= self.velocidade
 
-        if teclas[pygame.K_s] or teclas[pygame.K_DOWN]:
+        if teclas["s"] or teclas["baixo"]:
             dy += self.velocidade
 
-        if teclas[pygame.K_a] or teclas[pygame.K_LEFT]:
+        if teclas["a"] or teclas["esq"]:
             dx -= self.velocidade
             self.direcao = "esquerda"
             movimento = True
 
-        if teclas[pygame.K_d] or teclas[pygame.K_RIGHT]:
+        if teclas["d"] or teclas["dir"]:
             dx += self.velocidade
             self.direcao = "direita"
             movimento = True

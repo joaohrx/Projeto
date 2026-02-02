@@ -20,7 +20,7 @@ rodando = True
 while rodando:
 
     if estado == "intro":
-        estado = intro(tela)
+        estado = fase3(tela)
 
     elif estado == "fase1":
         estado = fase1(tela)

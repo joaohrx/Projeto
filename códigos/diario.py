@@ -10,7 +10,7 @@ def diario(tela):
 
     #Entrada
     texto_digitado = ""
-    codigo_correto = "88"
+    codigo_correto = "gestapo"
     codigo_hugo = "hugo"
 
     #erro

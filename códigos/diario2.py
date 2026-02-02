@@ -3,10 +3,14 @@ import random
 from config import X, Y, FPS
 
 
+
 def diario2(tela):
     clock = pygame.time.Clock()
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 32)
     fonte_erro = pygame.font.Font("assets/DepartureMono-Regular.otf", 26)
+    
+    som_alucinacao = pygame.mixer.Sound("assets/alucinacao.wav")
+    som_alucinacao.set_volume(0.7)
 
     texto_digitado = ""
     codigo_correto = "ss"
@@ -26,7 +30,7 @@ def diario2(tela):
     # transicao
     em_transicao = False
     inicio_transicao = 0
-    DURACAO_TRANSICAO = 9000  # 20 segundos em milimaxsegundos
+    DURACAO_TRANSICAO = 5000  # 5 segundos em milisegundos
 
     rodando = True
 
@@ -83,6 +87,17 @@ def diario2(tela):
             tempo_passado = tempo_atual - inicio_transicao
 
             tela.fill((0, 0, 0))
+            
+            offset_x = pygame.time.get_ticks() % 6 - 3
+            offset_y = pygame.time.get_ticks() % 6 - 3
+            
+            copia = tela.copy()
+            tela.blit(copia, (offset_x, offset_y))
+            
+            overlay = pygame.Surface((X, Y), pygame.SRCALPHA)
+            overlay.fill((120, 0, 0, 80))
+            tela.blit(overlay, (0, 0))
+
 
             # efeito glitch
             for _ in range(30):
@@ -94,7 +109,8 @@ def diario2(tela):
                 pygame.draw.rect(tela, cor, (x, y, w, h))
 
             fonteglitch = pygame.font.Font("assets/Faith_Collapsing.ttf", 60) 
-            texto = fonteglitch.render("Rocha pense em algo que combine com sua fase",True, (255, 0, 0))
+            texto = fonteglitch.render("eles voltaram", True, (255, 0, 0))
+            som_alucinacao.play()
             tela.blit(texto, texto.get_rect(center=(X // 2, Y // 2)))
 
             pygame.display.update()
@@ -103,7 +119,6 @@ def diario2(tela):
                 return "fase3"
 
             continue
-
 
         tela.fill((0, 0, 0))
 

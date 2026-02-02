@@ -1,6 +1,7 @@
 import pygame
 from config import X, Y, FPS
-from personagens import Protagonista
+from personagens import Protagonista, teclas_normais
+teclas = teclas_normais
 
 
 def fase2(tela):
