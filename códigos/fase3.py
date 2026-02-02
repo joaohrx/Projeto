@@ -26,29 +26,21 @@ def fase3(tela):
     escuridao = False
 
     tempo_inicio = pygame.time.get_ticks()
-    tempo_paranoia = 12000      # ms até paranoia
-    tempo_escuridao = 20000     # ms até escuridão total
+    tempo_paranoia = 12000
+    tempo_escuridao = 20000
     inicio_escuridao = None
-    
-
 
     rodando = True
     while rodando:
         clock.tick(FPS)
         agora = pygame.time.get_ticks()
-        
-        teclas_cru = pygame.key.get_pressed()
 
-        teclas = {
-            "cima": teclas_cru[pygame.K_DOWN],   # invertido
-            "baixo": teclas_cru[pygame.K_UP],
-            "esq": teclas_cru[pygame.K_RIGHT],
-            "dir": teclas_cru[pygame.K_LEFT],
-            "w": teclas_cru[pygame.K_s],
-            "s": teclas_cru[pygame.K_w],
-            "a": teclas_cru[pygame.K_d],
-            "d": teclas_cru[pygame.K_a],
-}
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return "sair"
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return "sair"
 
         # Transições
         if not paranoia and agora - tempo_inicio > tempo_paranoia:
@@ -61,35 +53,50 @@ def fase3(tela):
             pygame.mixer.music.load('assets/#19.mp3')
             pygame.mixer.music.play(-1)
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return "sair"
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    return "sair"
-
+        # Teclas e inversão
         teclas_cru = pygame.key.get_pressed()
 
-        # Controles invertidos
+        teclas_normais = {
+            "cima": teclas_cru[pygame.K_UP],
+            "baixo": teclas_cru[pygame.K_DOWN],
+            "esq": teclas_cru[pygame.K_LEFT],
+            "dir": teclas_cru[pygame.K_RIGHT],
+            "w": teclas_cru[pygame.K_w],
+            "s": teclas_cru[pygame.K_s],
+            "a": teclas_cru[pygame.K_a],
+            "d": teclas_cru[pygame.K_d],
+        }
+
+        if paranoia:
+            teclas = {
+                "cima": teclas_normais["baixo"],
+                "baixo": teclas_normais["cima"],
+                "esq": teclas_normais["dir"],
+                "dir": teclas_normais["esq"],
+                "w": teclas_normais["s"],
+                "s": teclas_normais["w"],
+                "a": teclas_normais["d"],
+                "d": teclas_normais["a"],
+            }
+        else:
+            teclas = teclas_normais
+
         protagonista.atualizar(teclas)
 
         tela.blit(fundo, (0, 0))
         protagonista.desenhar(tela)
 
-        # Efeitos visuais
+        # Paranoia
         if paranoia:
-            # tremor
             dx = random.randint(-4, 4)
             dy = random.randint(-4, 4)
             copia = tela.copy()
             tela.blit(copia, (dx, dy))
 
-            # overlay vermelho
             overlay = pygame.Surface((X, Y), pygame.SRCALPHA)
             overlay.fill((120, 0, 0, 80))
             tela.blit(overlay, (0, 0))
 
-            # texto intrusivo ocasional
             if random.randint(0, 120) == 0:
                 msg = random.choice(["VOLTE", "NÃO CORRA", "ELES ESTÃO AQUI"])
                 texto = fonte_intrusiva.render(msg, True, (255, 255, 255))
