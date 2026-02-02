@@ -154,25 +154,17 @@ def fase1(tela):
 
         elif mostrando_livro2:
             mostrar_texto(tela, fonte, [
-            'A16',
-            'A16',
-            'A24',
-            'A32',
-            'C48',
-            'C56',
-            'C16'
-            
+                'Guerra e Paz – Liev Tolstói',
+                'adouT csmEpo e mB eiPdodr - Marcel Proust'
+                'daatirS - Hermann Hesse'
+                'dreoncTi eâ ópcCr - Henry Miller'
                     ])
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-            'Guerra e Paz – Liev Tolstói',
-            'Em Busca do Tempo Perdido - Marcel Proust',
-            'Sidarta - Hermann Hesse',
-            'Trópico de Câncer - Henry Miller',
-            'Anna Kariênina - Liev Tolstói',
-            'Psicopatologia da Vida Cotidiana - Sigmund Freud',
-            'O Processo - Franz Kafka',
+            'Ivvi Sizqêvqvi - Liev Tolstói',
+            'Xmbmz Xiv - J. M. Barrie',
+            'W Xzwkmaaw - Franz Kafka',
             
             ])
 
