@@ -104,7 +104,6 @@ def fase1(tela):
             mostrando_aviso_estante_central
         ]):
 
-            teclas = pygame.key.get_pressed()
             protagonista.atualizar(teclas)
             protagonista.desenhar(tela)
 
