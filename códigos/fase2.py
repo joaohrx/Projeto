@@ -6,7 +6,7 @@ from personagens import Protagonista
 def fase2(tela):
     clock = pygame.time.Clock()
 
-    pygame.mixer.music.load('assets/FUNDO_MUSICAL.mp3')
+    pygame.mixer.music.load('assets/#9.mp3')
     pygame.mixer.music.play(-1)
 
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
@@ -51,7 +51,7 @@ def fase2(tela):
 
     em_alucinacao = False
     inicio_alucinacao = 0
-    DURACAO_ALUCINACAO = 900
+    DURACAO_ALUCINACAO = 850
 
     TEXTO_INTRUSIVO = ""
    
@@ -189,10 +189,10 @@ def fase2(tela):
         elif mostrando_livro2:
             mostrar_texto(tela, fonte, [
                 "Eu já tinha idade suficiente para andar sozinho pelo bairro onde vivíamos quando eles",
-                "chegaram em Budapeste. Minha mãe me disse que nós seríamos **********.",
+                "chegaram em Budapeste. Minha mãe me disse que nós seríamos ██████████.",
                 "Eu não tinha certeza sobre o que aquilo queria dizer, apenas sabia que estávamos partindo. ",
                 "Parecia uma aventura, mas minha mãe disse que era sério.",
-                "Fomos parte de um grupo de ******* que eles estavam trocando por caminhões.",
+                "Fomos parte de um grupo de ███████ que eles estavam trocando por caminhões.",
                 "Partimos em trens. À noite, dormíamos do lado de fora, em barracas.",
                 "Lá era lamacento e meus sapatos ficaram em frangalhos.",
                 "Aquilo me impedia de correr, a única diversão que tínhamos.",
@@ -200,12 +200,12 @@ def fase2(tela):
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-                'Alguns meses após eu chegar em *********, acho que quase todo mundo ficou doente.',
+                'Alguns meses após eu chegar em █████████, acho que quase todo mundo ficou doente.',
                 'Minha mãe havia tido malária, mas nunca teve tifo. Eu acabei contraíndo tifo, ',
                 'e não lembro muito bem o que aconteceu naquele período, só sei que minha mãe me vestia toda manhã,',
                 'e me arrastava para o trabalho, pois assim eu não corria o risco de apanhar ou de ser levada. ',
                 'Então, minha mãe me arrastava de um lado para o outro, mas era óbvio que eu não estava bem.',
-                'Uma vez, houve uma seleção para as ******* ** *** e nós estávamos em pé, do lado de fora, quando um guarda das [] mandou que eu fosse para um lado',
+                'Uma vez, houve uma seleção para as ███████ ██ ███ e nós estávamos em pé, do lado de fora, quando um guarda das [] mandou que eu fosse para um lado',
                 'e que minha mãe fosse para outro porque eu parecia estar muito doente e era claro que ',
                 'eu estava apenas desperdiçando a comida, a dieta de duzentas calorias que recebíamos por dia.' ,
                 'Então, minha mãe implorou a ele dizendo que eu era filha dela e pediu para ir junto comigo: ela não pode vir comigo?,',

@@ -1,16 +1,17 @@
 import pygame
 from config import X, Y, CAPTION
 from telas import tela_inicial
+from intro import intro
 from fase1 import fase1
 from fase2 import fase2
 from fase3 import fase3
+from final import final
 from diario import diario
 from diario2 import diario2
-from intro import intro
 
 pygame.init()
 
-tela = pygame.display.set_mode((X, Y), pygame.FULLSCREEN)
+tela = pygame.display.set_mode((X,Y), pygame.FULLSCREEN)
 pygame.display.set_caption(CAPTION)
 
 estado = tela_inicial(tela)
@@ -35,6 +36,9 @@ while rodando:
         
     elif estado == "fase3":
         estado = fase3(tela)
+        
+    elif estado == "final":
+        estado = final(tela)
         
     elif estado == "sair":
         rodando = False
