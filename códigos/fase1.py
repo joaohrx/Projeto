@@ -162,9 +162,9 @@ def fase1(tela):
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-            'Ivvi Sizqêvqvi - Liev Tolstói',
-            'Xmbmz Xiv - J. M. Barrie',
-            'W Xzwkmaaw - Franz Kafka',
+            'Gttg Qgxêtotg - Liev Tolstói',
+            'Vkzkx Vgt - J. M. Barrie',
+            'U Vxuikyyu - Franz Kafka',
             
             ])
 
