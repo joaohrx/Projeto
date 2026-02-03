@@ -18,8 +18,11 @@ estado = tela_inicial(tela)
 rodando = True
 
 while rodando:
+    
+    if estado == "tela_inicial":
+        estado = tela_inicial(tela)
 
-    if estado == "intro":
+    elif estado == "intro":
         estado = intro(tela)
 
     elif estado == "fase1":

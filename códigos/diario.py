@@ -11,7 +11,7 @@ def diario(tela):
     #Entrada
     texto_digitado = ""
     codigo_correto = "gestapo"
-    codigo_hugo = "pcow"
+    codigo_hugo = "namu"
 
     #erro
     mensagem_erro = ""
