@@ -99,15 +99,6 @@ def diario2(tela):
             tela.blit(overlay, (0, 0))
 
 
-            # efeito glitch
-            for _ in range(30):
-                x = random.randint(0, X)
-                y = random.randint(0, Y)
-                w = random.randint(20, 120)
-                h = random.randint(5, 25)
-                cor = random.choice([(255, 255, 255), (255, 0, 0)])
-                pygame.draw.rect(tela, cor, (x, y, w, h))
-
             fonteglitch = pygame.font.Font("assets/Faith_Collapsing.ttf", 60) 
             texto = fonteglitch.render("eles voltaram", True, (255, 0, 0))
             som_alucinacao.play()

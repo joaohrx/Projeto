@@ -5,31 +5,53 @@ import math
 def final(tela):
     clock = pygame.time.Clock()
 
-    fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 20)
+    fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 18)
     fonteLogo = pygame.font.Font("assets/Faith_Collapsing.ttf", 140)
 
     pygame.mixer.music.load("assets/#19.mp3")
     pygame.mixer.music.play(-1)
 
     linhas = [
-        "TEXTO NARRATIVO / CONTEXTO HISTÓRICO",
+        "Enquanto acontecia, milhares e milhões de alemães sorriam, comiam, bebiam, contavam piadas.",
         "",
-        "Linha narrativa 1...",
-        "Linha narrativa 2...",
-        "Linha narrativa 3...",
+        "Enquanto acontecia, bons cidadãos, bons pais e boas pessoas votavam, racionalizavam e legimitizavam o Horror.",
+        "",
+        "Enquanto acontecia, centenas de milhares de ''apenas cumprindo ordens'' faziam o Horror acontecer.",
+        "",
+        "Enquanto acontecia, compatriotas lucravam com a morte e dor inumerável do que eram amigos e colegas.",
+        "",
+        "Enquanto acontecia,",
+        "",
+        "Enquanto acontecia,",
+        "",
+        "Enquanto acontecia."
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Realizamos esse projeto tendo em mente não fetichizar ou gamificar os horrores sofridos",
+        "mas sim por que acreditamos na memória e no poder criativo dela. Por que, apesar de você, amanhã de ser outro dia.",
+        "",
+        "Registro encerrado.",
+        "",
+        "",
+        "",
+        "",
         "",
         "",
         "CRÉDITOS",
         "",
         "Trilha sonora:",
-        "Todas as faixas do jogo foram retiradas do álbum Selected Ambient Works Volume II.",
+        "Todas as faixas desse jogo foram retiradas do álbum Selected Ambient Works Volume II.",
         "#1 - Aphex Twin",
         "#5 - Aphex Twin",
         "#9 - Aphex Twin",
         "#19 - Aphex Twin",
         "",
         "Sprites:",
-        "  - Fonte / autor",
+        "Mansion of Shadow 16x16 tileset - Bakadri, Itch.io",
         "",
         "Desenvolvimento:",
         "Este jogo foi desenvolvido por Andresa Dantas e João Victor Rocha.",
