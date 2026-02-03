@@ -11,7 +11,7 @@ def diario(tela):
     #Entrada
     texto_digitado = ""
     codigo_correto = "gestapo"
-    codigo_hugo = "namu"
+    codigo_hugo = "pcow"
 
     #erro
     mensagem_erro = ""
@@ -65,7 +65,7 @@ def diario(tela):
 
                     # Código errado
                     texto_digitado = ""
-                    mensagem_erro = "Não foram esses..."
+                    mensagem_erro = "Não eram esses..."
                     tempo_erro = pygame.time.get_ticks()
 
                 elif event.key == pygame.K_BACKSPACE:

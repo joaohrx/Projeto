@@ -54,7 +54,7 @@ def final(tela):
         "Mansion of Shadow 16x16 tileset - Bakadri, Itch.io",
         "",
         "Desenvolvimento:",
-        "Este jogo foi desenvolvido por Andresa Dantas e João Victor Rocha.",
+        "Este jogo foi desenvolvido por Andresa Santos e João Victor Rocha.",
         "",
         "",
         "",  # espaço antes da logo
@@ -71,7 +71,7 @@ def final(tela):
 
     # Efeito de scroll (tipo créditos de cinema)
     y = Y + 20
-    velocidade_base = 40
+    velocidade_base = 30
     fim_scroll = False
     enter_liberado = False
     

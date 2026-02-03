@@ -11,7 +11,10 @@ def fase2(tela):
 
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
     fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
-    
+
+    largura = int(X * 0.9)
+    altura = int(Y * 0.9)
+
     som_alucinacao = pygame.mixer.Sound("assets/alucinacao.wav")
     som_alucinacao.set_volume(0.6)
 
@@ -19,7 +22,7 @@ def fase2(tela):
     imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
 
     imagem_estante3 = pygame.image.load('assets/ESTANTECC.png').convert_alpha()
-    imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
+    imagem_estante3 = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
 
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 

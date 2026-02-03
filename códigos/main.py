@@ -23,7 +23,7 @@ while rodando:
         estado = tela_inicial(tela)
 
     elif estado == "intro":
-        estado = intro(tela)
+        estado = fase1(tela)
 
     elif estado == "fase1":
         estado = fase1(tela)
