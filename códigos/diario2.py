@@ -14,7 +14,7 @@ def diario2(tela):
 
     texto_digitado = ""
     codigo_correto = "ss"
-    codigo_hugo = "hugo"
+    codigo_hugo = "pcow"
 
     mensagem_erro = ""
     tempo_erro = 0
