@@ -30,7 +30,7 @@ def diario2(tela):
     # transicao
     em_transicao = False
     inicio_transicao = 0
-    DURACAO_TRANSICAO = 5000  # 5 segundos em milisegundos
+    DURACAO_TRANSICAO = 3000  # 3 segundos em milisegundos
 
     rodando = True
 
