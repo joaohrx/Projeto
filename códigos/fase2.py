@@ -12,9 +12,6 @@ def fase2(tela):
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
     fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
 
-    largura = int(X * 0.9)
-    altura = int(Y * 0.9)
-
     som_alucinacao = pygame.mixer.Sound("assets/alucinacao.wav")
     som_alucinacao.set_volume(0.6)
 
@@ -46,6 +43,7 @@ def fase2(tela):
     mostrando_livro2 = False
     mostrando_livro3 = False
     mostrando_aviso_estante_central = False 
+    pausado = False
    
 
     #alucinado
@@ -64,9 +62,13 @@ def fase2(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "sair"
-
+            
             if event.type == pygame.KEYDOWN:
-
+                if event.key == pygame.K_p:
+                    pausado = not pausado
+                    continue
+                
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if any([
                         mostrando_estante,
@@ -139,9 +141,10 @@ def fase2(tela):
             mostrando_aviso_estante_central
         ]):
 
-            teclas = teclas_normais()
-            protagonista.atualizar(teclas)
-            protagonista.desenhar(tela)
+            if not pausado:
+                teclas = teclas_normais()
+                protagonista.atualizar(teclas)
+                protagonista.desenhar(tela)
 
             for area in [
                 area_estante, area_estante_central, area_estante3,
@@ -212,9 +215,22 @@ def fase2(tela):
                 'Então, minha mãe implorou a ele dizendo que eu era filha dela e pediu para ir junto comigo: ela não pode vir comigo?,',
                 'eu não posso ir junto com ela?, e ele disse que não, até que enfim falou: se você está tão preocupada com sua filha, vá com ela',
             ])
+            
+        if pausado:
+                overlay = pygame.Surface((X, Y))
+                overlay.set_alpha(160)
+                overlay.fill((0, 0, 0))
+                tela.blit(overlay, (0, 0))
 
-        #alucinado
-        if em_alucinacao:
+                fonte_pausa = pygame.font.Font("assets/DepartureMono-Regular.otf", 20) 
+                t1 = fonte_pausa.render("PAUSADO", True, (255, 255, 255))
+                t2 = fonte_pausa.render("Pressione P para continuar", True, (200, 200, 200))
+
+                tela.blit(t1, (X//2 - t1.get_width()//2, Y//2 - 20))
+                tela.blit(t2, (X//2 - t2.get_width()//2, Y//2 + 10))
+
+        # alucinado
+        if em_alucinacao and not pausado:
             agora = pygame.time.get_ticks()
             if agora - inicio_alucinacao < DURACAO_ALUCINACAO:
                 efeito_alucinacao(tela, fonte, TEXTO_INTRUSIVO)
@@ -269,7 +285,7 @@ def mostrar_texto(tela, fonte, linhas, rodape="Pressione ESC para fechar"):
     )
 
 
-#alucinado
+# alucinado
 def efeito_alucinacao(tela, fonte, texto_intrusivo):
     offset_x = pygame.time.get_ticks() % 6 - 3
     offset_y = pygame.time.get_ticks() % 6 - 3

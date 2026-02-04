@@ -2,7 +2,6 @@ import pygame
 from config import X, Y, FPS
 from personagens import Protagonista, teclas_normais
 
-
 def fase1(tela):
     clock = pygame.time.Clock()
 
@@ -12,9 +11,6 @@ def fase1(tela):
 
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
     fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
-
-    largura = int(X * 0.9)
-    altura = int(Y * 0.9)
 
     imagem_estante = pygame.image.load('assets/ESTANTEAA.png').convert_alpha()
     imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
@@ -42,6 +38,7 @@ def fase1(tela):
     mostrando_livro2 = False
     mostrando_livro3 = False
     mostrando_aviso_estante_central = False  
+    pausado = False
 
     while True:
         clock.tick(FPS)
@@ -49,9 +46,13 @@ def fase1(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "sair"
-
+            
             if event.type == pygame.KEYDOWN:
-
+                if event.key == pygame.K_p:
+                    pausado = not pausado
+                    continue
+                
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if any([
                         mostrando_estante,
@@ -103,9 +104,10 @@ def fase1(tela):
             mostrando_aviso_estante_central
         ]):
 
-            teclas = teclas_normais()
-            protagonista.atualizar(teclas)
-            protagonista.desenhar(tela)
+            if not pausado:
+                teclas = teclas_normais()
+                protagonista.atualizar(teclas)
+                protagonista.desenhar(tela)
 
             for area in [
                 area_estante, area_estante_central, area_estante3,
@@ -167,6 +169,19 @@ def fase1(tela):
                 'dreoncTi eâ ópcCr - Henry Miller',
             
             ])
+
+        if pausado:
+            overlay = pygame.Surface((X, Y))
+            overlay.set_alpha(160)
+            overlay.fill((0, 0, 0))
+            tela.blit(overlay, (0, 0))
+
+            fonte_pausa = pygame.font.Font("assets/DepartureMono-Regular.otf", 20) 
+            t1 = fonte_pausa.render("PAUSADO", True, (255, 255, 255))
+            t2 = fonte_pausa.render("Pressione P para continuar", True, (200, 200, 200))
+
+            tela.blit(t1, (X//2 - t1.get_width()//2, Y//2 - 20))
+            tela.blit(t2, (X//2 - t2.get_width()//2, Y//2 + 10))
 
         pygame.display.update()
 
