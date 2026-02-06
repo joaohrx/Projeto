@@ -1,7 +1,6 @@
 import pygame
 from config import X, Y, FPS
-from personagens import Protagonista
-
+from personagens import Protagonista, teclas_normais
 
 def fase1(tela):
     clock = pygame.time.Clock()
@@ -12,9 +11,6 @@ def fase1(tela):
 
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
     fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
-
-    largura = int(X * 0.9)
-    altura = int(Y * 0.9)
 
     imagem_estante = pygame.image.load('assets/ESTANTEAA.png').convert_alpha()
     imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
@@ -42,6 +38,7 @@ def fase1(tela):
     mostrando_livro2 = False
     mostrando_livro3 = False
     mostrando_aviso_estante_central = False  
+    pausado = False
 
     while True:
         clock.tick(FPS)
@@ -49,9 +46,13 @@ def fase1(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "sair"
-
+            
             if event.type == pygame.KEYDOWN:
-
+                if event.key == pygame.K_p:
+                    pausado = not pausado
+                    continue
+                
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if any([
                         mostrando_estante,
@@ -103,9 +104,10 @@ def fase1(tela):
             mostrando_aviso_estante_central
         ]):
 
-            teclas = pygame.key.get_pressed()
-            protagonista.atualizar(teclas)
-            protagonista.desenhar(tela)
+            if not pausado:
+                teclas = teclas_normais()
+                protagonista.atualizar(teclas)
+                protagonista.desenhar(tela)
 
             for area in [
                 area_estante, area_estante_central, area_estante3,
@@ -130,43 +132,56 @@ def fase1(tela):
 
         elif mostrando_livro1:
             mostrar_texto(tela, fonte, [
-                "06/06/08",
-                "Ok, retiro o que eu disse sobre não ter nada de interessante.",
-                "As pessoas são bem receptivas, e eu já tenho até alguns amigos",
-                "são meio agitados demais, mas acho que gosto disso;"
+                "Quando chegamos aqui, meu pai estava feliz pelo escape, e ao mesmo tempo, irritado",
+                "Disse que mamãe foi irresponsável, que ela não deveria ter passado aquela carta",
+                "e nem ajudado o Sr. ██████████ a falsificar aquele visto.",
+                "Ele disse que tudo isso nos colocou em perigo, e melhor teria sido se só ele tivesse sofrido",
+                "e não nós duas. Nunca vou esquecer a brutalidade da ███████ e dos homens invadindo nossa casa.",
+                "Lembre das iniciais."
             ])
 
         elif mostrando_diario_texto:
             mostrar_texto(
                 tela, fonte,
                 [
-                    "Bem vindo a ***************",
-                    "É importante manter a biblioteca orgnizada"
-                    "e os livros catalogados. De vez em quando um ou outro"
-                    "livros ficam sem identificação. "
-                    "a estante central está infestada de cupins. "
-                    "tenha um bom dia "
+                    "Bem vindos a ███████████████",
+                    "É importante manter a biblioteca organizada",
+                    "e os livros catalogados. De vez em quando um ou outro",
+                    "livros ficam sem identificação.",
+                    "A estante central está infestada de cupins.",
+                    "Tenha um bom dia."
                 ],
                 rodape="Pressione ENTER"
             )
 
         elif mostrando_livro2:
             mostrar_texto(tela, fonte, [
-            'A16',
-            'A16',
-            'A24',
-            'A32'
-            
+                    'Ivvi Sizqêvqvi - Liev Tolstói',
+                    'Xmbmz Xiv - J. M. Barrie',
+                    'W Xzwkmaaw - Franz Kafka',
                     ])
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-            'C48',
-            'C56',
-            'C16',
-            'C8'
+                'Guerra e Paz – Liev Tolstói',
+                'adouT csmEpo e mB eiPdodr - Marcel Proust',
+                'daatirS - Hermann Hesse',
+                'dreoncTi eâ ópcCr - Henry Miller',
             
             ])
+
+        if pausado:
+            overlay = pygame.Surface((X, Y))
+            overlay.set_alpha(160)
+            overlay.fill((0, 0, 0))
+            tela.blit(overlay, (0, 0))
+
+            fonte_pausa = pygame.font.Font("assets/DepartureMono-Regular.otf", 20) 
+            t1 = fonte_pausa.render("PAUSADO", True, (255, 255, 255))
+            t2 = fonte_pausa.render("Pressione P para continuar", True, (200, 200, 200))
+
+            tela.blit(t1, (X//2 - t1.get_width()//2, Y//2 - 20))
+            tela.blit(t2, (X//2 - t2.get_width()//2, Y//2 + 10))
 
         pygame.display.update()
 

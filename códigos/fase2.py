@@ -1,17 +1,17 @@
 import pygame
 from config import X, Y, FPS
-from personagens import Protagonista
+from personagens import Protagonista, teclas_normais
 
 
 def fase2(tela):
     clock = pygame.time.Clock()
 
-    pygame.mixer.music.load('assets/FUNDO_MUSICAL.mp3')
+    pygame.mixer.music.load('assets/#9.mp3')
     pygame.mixer.music.play(-1)
 
     fundo_jogo = pygame.image.load('assets/Mappa.png').convert()
     fundo_jogo = pygame.transform.scale(fundo_jogo, (X, Y))
-    
+
     som_alucinacao = pygame.mixer.Sound("assets/alucinacao.wav")
     som_alucinacao.set_volume(0.6)
 
@@ -19,7 +19,7 @@ def fase2(tela):
     imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
 
     imagem_estante3 = pygame.image.load('assets/ESTANTECC.png').convert_alpha()
-    imagem_estante = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
+    imagem_estante3 = escalar_sem_distorcer(imagem_estante, X * 0.95, Y * 0.95)
 
     fonte = pygame.font.Font("assets/DepartureMono-Regular.otf", 16)
 
@@ -43,6 +43,7 @@ def fase2(tela):
     mostrando_livro2 = False
     mostrando_livro3 = False
     mostrando_aviso_estante_central = False 
+    pausado = False
    
 
     #alucinado
@@ -51,7 +52,7 @@ def fase2(tela):
 
     em_alucinacao = False
     inicio_alucinacao = 0
-    DURACAO_ALUCINACAO = 900
+    DURACAO_ALUCINACAO = 850
 
     TEXTO_INTRUSIVO = ""
    
@@ -61,9 +62,13 @@ def fase2(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "sair"
-
+            
             if event.type == pygame.KEYDOWN:
-
+                if event.key == pygame.K_p:
+                    pausado = not pausado
+                    continue
+                
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     if any([
                         mostrando_estante,
@@ -136,9 +141,10 @@ def fase2(tela):
             mostrando_aviso_estante_central
         ]):
 
-            teclas = pygame.key.get_pressed()
-            protagonista.atualizar(teclas)
-            protagonista.desenhar(tela)
+            if not pausado:
+                teclas = teclas_normais()
+                protagonista.atualizar(teclas)
+                protagonista.desenhar(tela)
 
             for area in [
                 area_estante, area_estante_central, area_estante3,
@@ -169,10 +175,8 @@ def fase2(tela):
             "A casa encolheu. Somos seis aqui e ficou",
             "cheio demais, alguem precisa ir embora.",
             "Aprendemos a medir o dia pelos passos do lado de fora,",
-            "não pelo relógio. Comemos devagar para não fazer barulho.",
-            "Até em nossos pensamentos precisamos agir devagar para não chamar atenção.",
-            "Às vezes esqueço como era andar sem ter que pedir permissão ao chão.",
-            "Não estamos escondidos dos guardas. Estamos escondidos de algo maior.",
+            "não pelo relógio. Comemos devagar para não fazer barulho,",
+            "Não estamos escondidos dos guardas da []. Estamos escondidos de algo maior.",
             "Eles dizem que querem unificar ou algo assim, mas não entendo o que realmente querem dizer",
             "com isso."
             ])
@@ -189,10 +193,10 @@ def fase2(tela):
         elif mostrando_livro2:
             mostrar_texto(tela, fonte, [
                 "Eu já tinha idade suficiente para andar sozinho pelo bairro onde vivíamos quando eles",
-                "chegaram em Budapeste. Minha mãe me disse que nós seríamos **********.",
+                "chegaram em Budapeste. Minha mãe me disse que nós seríamos ██████████.",
                 "Eu não tinha certeza sobre o que aquilo queria dizer, apenas sabia que estávamos partindo. ",
                 "Parecia uma aventura, mas minha mãe disse que era sério.",
-                "Fomos parte de um grupo de ****** que eles estavam trocando por caminhões.",
+                "Fomos parte de um grupo de ███████ que eles estavam trocando por caminhões.",
                 "Partimos em trens. À noite, dormíamos do lado de fora, em barracas.",
                 "Lá era lamacento e meus sapatos ficaram em frangalhos.",
                 "Aquilo me impedia de correr, a única diversão que tínhamos.",
@@ -200,20 +204,33 @@ def fase2(tela):
 
         elif mostrando_livro3:
             mostrar_texto(tela, fonte, [
-                'Alguns meses após eu chegar em *********, acho que quase todo mundo ficou doente.',
+                'Alguns meses após eu chegar em █████████, acho que quase todo mundo ficou doente.',
                 'Minha mãe havia tido malária, mas nunca teve tifo. Eu acabei contraíndo tifo, ',
                 'e não lembro muito bem o que aconteceu naquele período, só sei que minha mãe me vestia toda manhã,',
                 'e me arrastava para o trabalho, pois assim eu não corria o risco de apanhar ou de ser levada. ',
                 'Então, minha mãe me arrastava de um lado para o outro, mas era óbvio que eu não estava bem.',
-                'Uma vez, houve uma seleção para as ******* ** *** e nós estávamos em pé, do lado de fora, quando um guarda das [] mandou que eu fosse para um lado',
+                'Uma vez, houve uma seleção para as ███████ ██ ███ e nós estávamos em pé, do lado de fora, quando um guarda das [] mandou que eu fosse para um lado',
                 'e que minha mãe fosse para outro porque eu parecia estar muito doente e era claro que ',
                 'eu estava apenas desperdiçando a comida, a dieta de duzentas calorias que recebíamos por dia.' ,
                 'Então, minha mãe implorou a ele dizendo que eu era filha dela e pediu para ir junto comigo: ela não pode vir comigo?,',
                 'eu não posso ir junto com ela?, e ele disse que não, até que enfim falou: se você está tão preocupada com sua filha, vá com ela',
             ])
+            
+        if pausado:
+                overlay = pygame.Surface((X, Y))
+                overlay.set_alpha(160)
+                overlay.fill((0, 0, 0))
+                tela.blit(overlay, (0, 0))
 
-        #alucinado
-        if em_alucinacao:
+                fonte_pausa = pygame.font.Font("assets/DepartureMono-Regular.otf", 20) 
+                t1 = fonte_pausa.render("PAUSADO", True, (255, 255, 255))
+                t2 = fonte_pausa.render("Pressione P para continuar", True, (200, 200, 200))
+
+                tela.blit(t1, (X//2 - t1.get_width()//2, Y//2 - 20))
+                tela.blit(t2, (X//2 - t2.get_width()//2, Y//2 + 10))
+
+        # alucinado
+        if em_alucinacao and not pausado:
             agora = pygame.time.get_ticks()
             if agora - inicio_alucinacao < DURACAO_ALUCINACAO:
                 efeito_alucinacao(tela, fonte, TEXTO_INTRUSIVO)
@@ -268,7 +285,7 @@ def mostrar_texto(tela, fonte, linhas, rodape="Pressione ESC para fechar"):
     )
 
 
-#alucinado
+# alucinado
 def efeito_alucinacao(tela, fonte, texto_intrusivo):
     offset_x = pygame.time.get_ticks() % 6 - 3
     offset_y = pygame.time.get_ticks() % 6 - 3

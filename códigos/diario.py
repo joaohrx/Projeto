@@ -10,8 +10,8 @@ def diario(tela):
 
     #Entrada
     texto_digitado = ""
-    codigo_correto = "88"
-    codigo_hugo = "hugo"
+    codigo_correto = "gestapo"
+    codigo_hugo = "pcow"
 
     #erro
     mensagem_erro = ""
@@ -21,8 +21,6 @@ def diario(tela):
     Hugo = pygame.image.load("assets/aihugo.jpg").convert()
     Hugo = pygame.transform.scale(Hugo, (X, Y))
 
-    Visao = pygame.image.load("assets/GF.gif").convert()
-    Visao = pygame.transform.scale(Visao, (X, Y))
 
     # Som
     Hugo_som = None
@@ -61,14 +59,13 @@ def diario(tela):
 
                     # Código correto
                     if texto_digitado.lower().strip() == codigo_correto:
-                        tela.blit(Visao, (0, 0))
                         pygame.display.update()
                         pygame.time.delay(100)
                         return "fase2"
 
                     # Código errado
                     texto_digitado = ""
-                    mensagem_erro = "Não foram esses..."
+                    mensagem_erro = "Não eram esses..."
                     tempo_erro = pygame.time.get_ticks()
 
                 elif event.key == pygame.K_BACKSPACE:

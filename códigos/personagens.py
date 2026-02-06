@@ -2,6 +2,20 @@ import pygame
 from abc import ABC, abstractmethod
 import colisao
 import os
+
+def teclas_normais():
+    teclas_cru = pygame.key.get_pressed()
+    return {
+        "cima": teclas_cru[pygame.K_UP],
+        "baixo": teclas_cru[pygame.K_DOWN],
+        "esq": teclas_cru[pygame.K_LEFT],
+        "dir": teclas_cru[pygame.K_RIGHT],
+        "w": teclas_cru[pygame.K_w],
+        "s": teclas_cru[pygame.K_s],
+        "a": teclas_cru[pygame.K_a],
+        "d": teclas_cru[pygame.K_d],
+    }
+
 class Personagem(ABC):
     def __init__(self, imagem_path, tamanho, posi, velocidade, vida):
         self.posi = list(posi)
@@ -32,13 +46,6 @@ class Personagem(ABC):
     def desenhar(self, tela):
         if self.vivo and self.imagem:
             tela.blit(self.imagem, self.posi)
-            
-            if self.lanterna and self.lanterna.ligada and self.lanterna.energia > 0:
-                lanterna_pos = (
-                    self.posi[0] + 20 if self.direcao == "direita" else self.posi[0] - 10,
-                    self.posi[1] + 15
-                )  
-                self.lanterna.desenhar(tela, lanterna_pos)
 
     def mover(self, dx, dy):
         nova_posi = [self.posi[0] + dx, self.posi[1] + dy]
@@ -64,14 +71,8 @@ class Personagem(ABC):
             self.imagem = self.animacoes[self.direcao][self.frame_atual]
 
 class Protagonista(Personagem):
-    def __init__(self, posi_inicial=(500, 300)):
-        super().__init__(
-            None,
-            (50, 50),
-            posi_inicial,
-            0.5,
-            100
-        )
+    def __init__(self, posi_inicial=(630, 450)):
+        super().__init__(None, (50, 50), posi_inicial, 0.6, 100)
 
         self.animacoes["direita"] = self.carregar_animacao(
             "assets/protagonista/direita", 6
@@ -82,13 +83,6 @@ class Protagonista(Personagem):
 
         self.imagem = self.animacoes["direita"][0]
         
-        self.lanterna = Lanterna(
-        "assets/lanterna_spritesheet.png",
-        frame_w=32,
-        frame_h=32,
-        frames=8
-        )
-
     def carregar_animacao(self, pasta, quantidade):
       frames = []
       for i in range(1, quantidade + 1):
@@ -99,22 +93,22 @@ class Protagonista(Personagem):
       return frames
 
 
-    def atualizar(self, teclas, lanterna_ligada = False):
+    def atualizar(self, teclas):
         dx = dy = 0
         movimento = False
 
-        if teclas[pygame.K_w] or teclas[pygame.K_UP]:
+        if teclas["w"] or teclas["cima"]:
             dy -= self.velocidade
 
-        if teclas[pygame.K_s] or teclas[pygame.K_DOWN]:
+        if teclas["s"] or teclas["baixo"]:
             dy += self.velocidade
 
-        if teclas[pygame.K_a] or teclas[pygame.K_LEFT]:
+        if teclas["a"] or teclas["esq"]:
             dx -= self.velocidade
             self.direcao = "esquerda"
             movimento = True
 
-        if teclas[pygame.K_d] or teclas[pygame.K_RIGHT]:
+        if teclas["d"] or teclas["dir"]:
             dx += self.velocidade
             self.direcao = "direita"
             movimento = True
@@ -127,46 +121,4 @@ class Protagonista(Personagem):
             self.frame_atual = 0
             self.imagem = self.animacoes[self.direcao][0]
             
-        if self.lanterna.ligada and self.lanterna.energia > 0:
-            self.lanterna.atualizar(lanterna_ligada)
-
-
-class Lanterna:
-    def __init__(self, caminho_spritesheet, frame_w, frame_h, frames):
-        self.frames = []
-        self.frame_atual = 0
-        self.tempo_animacao = 0
-        self.delay = 80
-
-        self.energia = 100
-        self.ligada = False
-
-        sheet = pygame.image.load(caminho_spritesheet).convert_alpha()
-
-        for i in range(frames):
-            frame = sheet.subsurface(
-                pygame.Rect(i * frame_w, 0, frame_w, frame_h)
-            )
-            frame = pygame.transform.scale(frame, (40, 40))
-            self.frames.append(frame)
-
-    def atualizar(self, ligada):
-        agora = pygame.time.get_ticks()
-        self.ligada = ligada
-
-        if self.ligada and self.energia > 0:
-            self.energia -= 0.2
-
-            if agora - self.tempo_animacao > self.delay:
-                self.tempo_animacao = agora
-                self.frame_atual = (self.frame_atual + 1) % len(self.frames)
-
-        else:
-            self.frame_atual = 0
-
-    def desenhar(self, tela, pos):
-        if self.energia <= 0:
-            return
-
-        tela.blit(self.frames[self.frame_atual], pos)
         
