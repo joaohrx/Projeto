@@ -30,7 +30,7 @@ def diario2(tela):
     # transicao
     em_transicao = False
     inicio_transicao = 0
-    DURACAO_TRANSICAO = 3000  # 3 segundos em milisegundos
+    DURACAO_TRANSICAO = 2000  # 2 segundos em milimaxsegundos
 
     rodando = True
 
@@ -100,7 +100,7 @@ def diario2(tela):
 
 
             fonteglitch = pygame.font.Font("assets/Faith_Collapsing.ttf", 60) 
-            texto = fonteglitch.render("eles voltaram", True, (255, 0, 0))
+            texto = fonteglitch.render("eles chegaram", True, (255, 0, 0))
             som_alucinacao.play()
             tela.blit(texto, texto.get_rect(center=(X // 2, Y // 2)))
 
